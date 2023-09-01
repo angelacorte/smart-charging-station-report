@@ -1,20 +1,44 @@
 \documentclass[12pt]{article}
-\usepackage[italian]{babel}
+
 \usepackage[utf8]{inputenc}
-\usepackage{hyperref}
-\usepackage{url}
-\usepackage{graphicx}
-\usepackage{makeidx}
-\usepackage{listings}
-\usepackage[square,numbers,sort]{natbib}
-\usepackage{tabularx}
-\usepackage{float}
+%\usepackage[T1]{fontenc}
 
 \usepackage{geometry}
 \geometry{a4paper}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[italian]{babel}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumitem}
 
-\usepackage[utf8]{inputenc}
-\usepackage{tabularx}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
 % \begin{tabularx}{0.8\textwidth} { 
 %   | >{\raggedright\arraybackslash}X 
 %   | >{\centering\arraybackslash}X 

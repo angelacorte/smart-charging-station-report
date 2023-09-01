@@ -1,3 +1,35 @@
+## 1.0.0 (2023-09-01)
+
+
+### Bug Fixes
+
+* fix image path ([1aeb410](https://github.com/angelacorte/smart-charging-station-report/commit/1aeb410c4707abd9c97520b724bfe7d9666aa3cc))
+
+
+### General maintenance
+
+* add changelog ([621e6e7](https://github.com/angelacorte/smart-charging-station-report/commit/621e6e762de07e05870d9adbb8d17837a72db669))
+* add container and workflows ([e23d948](https://github.com/angelacorte/smart-charging-station-report/commit/e23d948f048163afb1fe2fb50178c18a1524329a))
+* fix release config ([61186af](https://github.com/angelacorte/smart-charging-station-report/commit/61186af1ee2125c258b9a495fe0be42a9cc93c5c))
+* setup renovate and release config ([08b2b3f](https://github.com/angelacorte/smart-charging-station-report/commit/08b2b3fee7f71b19b6b096b2321ac3d7ed175bff))
+* update gitignore ([c5859c2](https://github.com/angelacorte/smart-charging-station-report/commit/c5859c2a4075f74e9a559ebd5aa4ffeff23ec9a0))
+
+
+### Documentation
+
+* add intro to introduction ([15a844c](https://github.com/angelacorte/smart-charging-station-report/commit/15a844c59d6d22b7cfde68fd1dee10c4b3278f38))
+* add paragraph to state of art ([582da39](https://github.com/angelacorte/smart-charging-station-report/commit/582da39789b9fd4913b0b4ffe788d49402b21183))
+* add requiremenrs ([9f406ae](https://github.com/angelacorte/smart-charging-station-report/commit/9f406ae64b11dad7fb87fd1f4d3d56e984cc3bf1))
+* add sections ([fd9b8eb](https://github.com/angelacorte/smart-charging-station-report/commit/fd9b8eb1946e50aa2f253a4f99861ff29b9b7676))
+* add state of art chapter ([a126bb7](https://github.com/angelacorte/smart-charging-station-report/commit/a126bb701358c261635fab833ff64f584acb0e59))
+* add use cases diagram ([7d2cd7f](https://github.com/angelacorte/smart-charging-station-report/commit/7d2cd7f56bd2373b0ef9372f9a19ae21a95da76c))
+* change some packages ([0dc351f](https://github.com/angelacorte/smart-charging-station-report/commit/0dc351f4e4f9b1d6f3c28c1885669c13b3275420))
+
+
+### Build and continuous integration
+
+* fix ci ([951510a](https://github.com/angelacorte/smart-charging-station-report/commit/951510ab8854fc4afd82ff5300dcfa268dee3661))
+
 ## [1.0.5](https://github.com/angelacorte/smart-charging-station/compare/1.0.4...1.0.5) (2023-09-01)
 
 

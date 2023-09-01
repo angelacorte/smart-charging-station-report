@@ -16,7 +16,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.GH_ACCESS_TOKEN }}
-          ref: docs
           submodules: recursive
 
       - name: Compile latex
@@ -25,14 +24,6 @@ jobs:
           root_file: "report.tex"
           working_directory: "docs/"
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape
-
-      - name: copy ontology file
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GH_ACCESS_TOKEN }}
-          ref: main
-          path: ./main-repo
-          submodules: recursive
 
       - name: Release
         env:

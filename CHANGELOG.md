@@ -1,3 +1,11 @@
+## [1.3.2](https://github.com/angelacorte/smart-charging-station-report/compare/1.3.1...1.3.2) (2023-09-02)
+
+
+### Documentation
+
+* add plan work chapter ([920ea26](https://github.com/angelacorte/smart-charging-station-report/commit/920ea268f275949257d1aecbeb16f801783141fa))
+* update sprint ([b08ca5c](https://github.com/angelacorte/smart-charging-station-report/commit/b08ca5c467daac9daed2a6d1b1ed03a87889f2c9))
+
 ## [1.3.1](https://github.com/angelacorte/smart-charging-station-report/compare/1.3.0...1.3.1) (2023-09-02)
 
 

@@ -6,62 +6,45 @@
 \section{Implementazione}\label{sec:implementazione}
 
 
-\subsection{User App - A}
+\subsection{User App}
 
-%Considerazioni generali sulle particolarità di svelte
+Per quanto riguarda l'implementazione dell'applicazione con cui si interfaccia l'utente, è stato deciso di utilizzare il framework Svelte. Questa scelta è stata dettata da un'approfondita analisi delle opzioni disponibili e da diverse considerazioni chiave che hanno guidato questa decisione.
 
-Per quanto riguarda l'implementazione dell'applicazione con cui si interfaccia l'utente,
-è stato deciso di utilizzare il framework Svelte. Questa scelta è stata dettata dal fatto
-che Svelte è un framework molto leggero, che non utilizza un Virtual DOM, ma che si basa
-su un compilatore che traduce il codice scritto in Javascript, HTML e CSS in codice Javascript
-nativo. Questo permette di avere un codice molto più leggero e veloce rispetto ad altri
-framework come React o Vue. Inoltre, Svelte è molto semplice da utilizzare e permette
-di creare applicazioni web in modo molto intuitivo e veloce.
+\subsubsection{Svelte: Leggerezza e Performance}
 
+Svelte è emerso come la scelta ideale per l'implementazione dell'interfaccia utente. La sua caratteristica distintiva è la mancanza di un Virtual DOM, a differenza di framework concorrenti come React o Vue. Invece, Svelte utilizza un compilatore che traduce il codice scritto in JavaScript, HTML e CSS direttamente in codice JavaScript nativo altamente ottimizzato. Questo si traduce in un'applicazione con un codice molto più leggero e una maggiore velocità rispetto ad altri framework. La leggerezza è essenziale per garantire un'esperienza utente fluida, soprattutto su dispositivi con risorse limitate.
 
-\subsubsection{Svelte store}
-Lo "store" in Svelte è un meccanismo per gestire lo stato dell'applicazione in modo reattivo e condiviso tra le diverse parti dell'applicazione. Nella porzione di codice fornita, vengono utilizzati i moduli \texttt{writable} e \texttt{createEventDispatcher} per creare e gestire uno store denominato "Stations". Ecco una breve descrizione di ciò che viene fatto nel codice:
-\begin{enumerate}[label=\arabic*.]
-      \item \textbf{Creazione dello Store "Stations"}: La riga
-            \texttt{export const Stations = writable([])} inizializza uno store
-            Svelte chiamato "Stations" utilizzando la funzione \texttt{writable}.
-            Questo store sarà utilizzato per memorizzare e condividere un elenco
-            di stazioni di ricarica all'interno dell'applicazione.
+\subsubsection{Semplicità e Velocità di Sviluppo}
 
-      \item \textbf{Definizione di Funzioni per Interagire con lo Store}:
-            \begin{enumerate}[label=\arabic{enumi}.\arabic*]
-                  \item \textit{fetchStations}: Questa funzione effettua una richiesta
-                        HTTP per recuperare l'elenco delle stazioni di ricarica dal server (AKKA SERVER)
-                        e poi lo trasforma in un formato appropriato. Infine, aggiorna il valore dello
-                        store "Stations" utilizzando \textit{Stations.set(newStations)}. In questo modo,
-                        l'elenco delle stazioni è disponibile globalmente all'interno dell'applicazione.
+Oltre alla performance, Svelte offre una curva di apprendimento molto meno ripida rispetto ad altri framework. La sua sintassi dichiarativa e la facilità con cui è possibile definire componenti rendono la scrittura del codice più efficiente. Un aspetto chiave è il sistema di "store" di Svelte. Nel codice fornito, notiamo l'uso dei moduli `writable` e `createEventDispatcher` per creare e gestire uno store denominato "Stations". Questo store è fondamentale per la gestione dello stato delle stazioni di ricarica all'interno dell'applicazione. Le funzioni come `fetchStations`, `charge`, `reserve`, `addFavourite`, e `removeFavourite` operano su questo store per mantenere una visione coerente e reattiva dei dati in tutta l'applicazione.
 
-                  \item \texttt{charge}: Questa funzione invia una richiesta HTTP al server AKKA per avviare una sessione di ricarica per un utente presso una stazione di ricarica specifica. Se l'operazione ha successo, l'applicazione viene reindirizzata alla pagina principale.
+\subsubsection{Integrazione con Altre Tecnologie}
 
-                  \item \texttt{reserve}: Simile a \texttt{charge}, questa funzione invia una richiesta HTTP per prenotare una stazione di ricarica e reindirizza l'applicazione alla pagina principale se ha successo.
-                  \item \textit{addFavourite}: Questa funzione invia una
-                        richiesta HTTP al server (EXPRESS SERVER) per aggiungere una stazione
-                        di ricarica ai preferiti di un utente. Se la richiesta ha successo, viene
-                        generato un evento personalizzato per notificare altre parti dell'applicazione.
-
-                  \item \texttt{removeFavourite}: Simile a \texttt{addFavourite}, questa funzione invia una richiesta HTTP per rimuovere una stazione dai preferiti di un utente e genera un evento se l'operazione ha successo.
-            \end{enumerate}
-\end{enumerate}
-
+L'integrazione è stata un altro punto cruciale nella scelta di Svelte. Ad esempio, l'applicazione utilizza Leaflet, una libreria JavaScript per la creazione di mappe interattive. L'integrazione di Leaflet con Svelte è stata fluida, consentendo la visualizzazione delle stazioni di ricarica sulla mappa in modo efficace ed efficiente. Inoltre, l'applicazione è scritta in TypeScript, un linguaggio che aggiunge tipizzazione statica a JavaScript. Questo migliora la manutenibilità del codice e aiuta a prevenire errori comuni durante lo sviluppo.
 
 \subsection{Auth Server}
 
-% parlare di express e nodejs e mongodb
+Tra le funzionalità dell'applicazione, troviamo la possibilità di effettuare la registrazione personale ed il login. Per gestire queste funzionalità è stato utilizzato il framework Express.js, che offre una solida base per la creazione di un server web in Node.js. Le motivazioni dietro questa scelta sono state ponderate attentamente.
 
-Tra le funzionalità dell'applicazione, troviamo la possibilità di effettuare la
-registrazione personale ed il login. Per gestire queste funzionalità è stato utilizzato
-il framework Express.js, che permette di creare un server web in Node.js e include
-la configurazione delle opzioni CORS per consentire richieste da qualsiasi origine.
-Inoltre, per memorizzare i dati degli utenti, è stato utilizzato MongoDB,
-un database non relazionale che permette di memorizzare i dati in formato JSON.
-Per interfacciarsi con il database, è stato utilizzato il modulo Mongoose, che
-permette di definire degli schemi per i dati che vengono memorizzati nel database.
+\subsubsection{Express.js: Facilità d'Uso e Configurabilità}
 
+Express.js è noto per la sua facilità d'uso nella creazione di server web. La sua flessibilità lo rende una scelta eccellente per gestire le route, le richieste HTTP e le risposte nell'applicazione. Inoltre, è stato configurato per gestire le opzioni CORS (Cross-Origin Resource Sharing), il che consente di consentire o limitare l'accesso ai servizi del server da parte di domini esterni. Questo è fondamentale per garantire una comunicazione sicura tra il frontend e il backend.
+
+\subsubsection{Memorizzazione dei Dati Utente con MongoDB}
+
+Per memorizzare i dati degli utenti, è stata fatta una scelta significativa nell'adozione di MongoDB, un database non relazionale orientato ai documenti. Questa decisione è stata guidata da diverse considerazioni fondamentali.
+
+\subsubsection{Flessibilità Strutturale}
+
+Innanzitutto, MongoDB offre una flessibilità strutturale significativa. Ciò significa che è possibile gestire dati eterogenei senza la necessità di un rigoroso schema fisso. Questo si è rivelato particolarmente utile durante lo sviluppo, consentendo di adattarsi facilmente alle esigenze cambianti dell'applicazione.
+
+\subsubsection{Scalabilità Orizzontale}
+
+In secondo luogo, MongoDB è noto per la sua scalabilità orizzontale. Questa caratteristica è cruciale quando si gestiscono grandi volumi di dati e carichi di traffico in crescita. L'architettura di MongoDB consente di aggiungere nuovi nodi al cluster in modo relativamente semplice, consentendo all'applicazione di crescere in modo fluido con il suo successo.
+
+\subsubsection{Velocità di Sviluppo e Integrazione con JavaScript}
+
+Infine, MongoDB si è dimostrato un'ottima scelta per accelerare lo sviluppo. La sua capacità di memorizzare e recuperare dati in un formato JSON-like si integra perfettamente con il mondo JavaScript, garantendo coerenza tra il modello dati del backend e quello del frontend.
 
 
 \subsection{Cluster}
@@ -69,84 +52,52 @@ permette di definire degli schemi per i dati che vengono memorizzati nel databas
 \subsubsection{Akka Cluster}
 \subsubsection{Akka HTTP}
 
+
 \subsection{Tecnologie impiegate - A}
 
-In questa sezione verranno presentate le principali tecnologie utilizzate per implementare il sistema e le motivazioni che ci hanno spinto a sceglierle.
+In questa sezione, verranno presentate in dettaglio le principali tecnologie utilizzate per implementare il sistema e le motivazioni che ci hanno spinto a sceglierle.
 
 \subsubsection{Applicazione utente}
-Le tecnologie principali utilizzate per l'implementazione dell'applicazione utente sono:
+
+Per l'implementazione dell'applicazione utente, sono state impiegate diverse tecnologie chiave:
 
 \begin{itemize}
-      \item \textbf{Svelte:} Svelte è il framework front-end principale utilizzato per la creazione
-            dell'interfaccia utente dell'applicazione. La sua caratteristica distintiva è la compilazione
-            del codice Svelte in JavaScript altamente ottimizzato. Questo framework permette di scrivere
-            codice dichiarativo che si traduce in un'applicazione web reattiva ed efficiente.
+      \item \textbf{Svelte:} Svelte è il framework front-end principale utilizzato per la creazione dell'interfaccia utente dell'applicazione. La sua caratteristica distintiva è la compilazione del codice Svelte in JavaScript altamente ottimizzato. Questo framework permette di scrivere codice dichiarativo che si traduce in un'applicazione web reattiva ed efficiente.
 
-      \item \textbf{Svelte Kit:} Svelte Kit è una libreria aggiuntiva che semplifica la gestione
-            delle route e delle pagine in un'applicazione Svelte. Questo è fondamentale per creare
-            un'applicazione a pagine multiple in modo strutturato e organizzato.
+      \item \textbf{Svelte Kit:} Svelte Kit è una libreria aggiuntiva che semplifica la gestione delle route e delle pagine in un'applicazione Svelte. Questo è fondamentale per creare un'applicazione a pagine multiple in modo strutturato e organizzato.
 
-      \item \textbf{Leaflet:} Leaflet è una libreria JavaScript utilizzata per creare mappe
-            interattive. È stata impiegata nell'applicazione per l'integrazione delle mappe e la
-            visualizzazione delle stazioni di ricarica per veicoli elettrici.
+      \item \textbf{Leaflet:} Leaflet è una libreria JavaScript utilizzata per creare mappe interattive. È stata impiegata nell'applicazione per l'integrazione delle mappe e la visualizzazione delle stazioni di ricarica per veicoli elettrici.
 
-      \item \textbf{TypeScript:} TypeScript è un linguaggio di programmazione che aggiunge
-            tipizzazione statica a JavaScript. Questo miglioramento della tipizzazione rende
-            il codice più affidabile e agevola la manutenzione.
+      \item \textbf{TypeScript:} TypeScript è un linguaggio di programmazione che aggiunge tipizzazione statica a JavaScript. Questo miglioramento della tipizzazione rende il codice più affidabile e agevola la manutenzione.
 
-      \item \textbf{Vite:} Vite è un bundler e un task runner veloce progettato per lo
-            sviluppo front-end. Grazie al suo sistema di moduli nativo e alla ricarica a caldo,
-            semplifica notevolmente lo sviluppo e l'ottimizzazione del codice.
+      \item \textbf{Vite:} Vite è un bundler e un task runner veloce progettato per lo sviluppo front-end. Grazie al suo sistema di moduli nativo e alla ricarica a caldo, semplifica notevolmente lo sviluppo e l'ottimizzazione del codice.
 
-      \item \textbf{Svelte Geolocation:} La dipendenza "svelte-geolocation" è stata utilizzata
-            per accedere alla funzionalità di geolocalizzazione del dispositivo all'interno
-            dell'applicazione. Questo è utile per determinare la posizione dell'utente e fornire
-            informazioni basate sulla sua posizione, ad esempio la visualizzazione delle stazioni di ricarica
-            più vicine.
+      \item \textbf{Svelte Geolocation:} La dipendenza "svelte-geolocation" è stata utilizzata per accedere alla funzionalità di geolocalizzazione del dispositivo all'interno dell'applicazione. Questo è utile per determinare la posizione dell'utente e fornire informazioni basate sulla sua posizione, ad esempio la visualizzazione delle stazioni di ricarica più vicine.
 
-      \item \textbf{Svelte QR Scanner:} "Svelte-qr-scanner" è stato integrato nell'applicazione
-            per consentire la scansione dei codici QR. Questa funzionalità è utilizzata per diverse
-            finalità, ad esempio la lettura di QR code per lo sblocco di una colonnina ed il
-            conseguente inizio della ricarica.
+      \item \textbf{Svelte QR Scanner:} "Svelte-qr-scanner" è stato integrato nell'applicazione per consentire la scansione dei codici QR. Questa funzionalità è utilizzata per diverse finalità, ad esempio la lettura di QR code per lo sblocco di una colonnina ed il conseguente inizio della ricarica.
 \end{itemize}
 
 \subsubsection{Authentication server}
 
-Per quanto riguarda il server utilizzato per l'autenticazione sono state utilizzate le seguenti tecnologie:
+Per quanto riguarda il server utilizzato per l'autenticazione, sono state utilizzate le seguenti tecnologie:
 
 \begin{itemize}
+      \item \textbf{Express.js:} Express è un framework web per Node.js che semplifica la creazione di server web. È utilizzato per gestire le route, le richieste HTTP e le risposte nell'applicazione.
 
-      \item \textbf{express:} Express è un framework web per Node.js che semplifica
-            la creazione di server web. È utilizzato per gestire le route, le richieste
-            HTTP e le risposte nell'applicazione.
+      \item \textbf{MongoDB:} MongoDB è un database non relazionale orientato ai documenti. È utilizzato per memorizzare i dati dell'applicazione in formato JSON-like. La scelta di MongoDB è stata motivata dalla flessibilità strutturale, dalla scalabilità orizzontale e dalla facilità di sviluppo.
 
-      \item \textbf{mongodb:} MongoDB è un database non relazionale orientato ai
-            documenti. È utilizzato per memorizzare i dati dell'applicazione in formato
-            JSON-like. MongoDB è una scelta comune per applicazioni che richiedono scalabilità
-            e flessibilità nella gestione dei dati.
+      \item \textbf{Mongoose:} Mongoose è una libreria Node.js che semplifica l'interazione con il database MongoDB. È utilizzato per definire gli schemi dei dati e per eseguire operazioni di query nel database in modo più intuitivo.
 
-      \item \textbf{mongoose:} Mongoose è una libreria Node.js che semplifica l'interazione
-            con il database MongoDB. È utilizzato per definire gli schemi dei dati e per
-            eseguire operazioni di query nel database in modo più intuitivo.
+      \item \textbf{bcrypt:} bcrypt è una libreria per la crittografia delle password. È utilizzata per proteggere le password degli utenti nel database, garantendo che siano memorizzate in modo sicuro.
 
-      \item \textbf{bcrypt:} bcrypt è una libreria per la crittografia delle password.
-            È utilizzata per proteggere le password degli utenti nel database, garantendo che
-            siano memorizzate in modo sicuro.
+      \item \textbf{CORS:} CORS (Cross-Origin Resource Sharing) è una tecnologia che consente di gestire le richieste HTTP provenienti da origini diverse. È utilizzata per consentire o limitare l'accesso ai servizi del server da parte di domini esterni.
 
-      \item \textbf{cors:} CORS (Cross-Origin Resource Sharing) è una tecnologia che
-            consente di gestire le richieste HTTP provenienti da origini diverse. È utilizzata
-            per consentire o limitare l'accesso ai servizi del server da parte di domini esterni.
+      \item \textbf{dotenv:} dotenv è un modulo che permette di caricare variabili d'ambiente da un file di configurazione. È utilizzato per gestire le variabili d'ambiente nell'applicazione, consentendo la configurazione di parametri sensibili come le chiavi segrete.
 
-      \item \textbf{dotenv:} dotenv è un modulo che permette di caricare variabili
-            d'ambiente da un file di configurazione. È utilizzato per gestire le variabili
-            d'ambiente nell'applicazione, consentendo la configurazione di parametri
-            sensibili come le chiavi segrete.
-
-      \item \textbf{jsonwebtoken:} jsonwebtoken è una libreria per la gestione dei
-            JSON Web Token (JWT). È utilizzata per l'autenticazione e l'autorizzazione
-            degli utenti nell'applicazione.
-
+      \item \textbf{jsonwebtoken:} jsonwebtoken è una libreria per la gestione dei JSON Web Token (JWT). È utilizzata per l'autenticazione e l'autorizzazione degli utenti nell'applicazione.
 \end{itemize}
+
+\paragraph{Perchè MongoDB}
 
 Le scelte che hanno portato alla decisione dell'utilizzo di MongoDB anzichè
 di un database relazionale sono state le seguenti:
@@ -166,8 +117,6 @@ di un database relazionale sono state le seguenti:
             JavaScript, fornendo coerenza tra il modello dati del backend e quello del frontend.
 \end{itemize}
 
-
-
 \subsubsection{Akka server}
 
 
@@ -178,6 +127,164 @@ Considerazioni che hanno guidato la scelta della tecnologia:
       \item Il sistema deve essere scalabile: deve essere semplice aggiungere e rimuovere nodi dal sistema.
       \item Il sistema deve essere robusto: deve essere in grado di tollerare guasti e malfunzionamenti di alcuni nodi.
 \end{itemize}
+
+
+
+% \subsection{User App - A}
+
+% %Considerazioni generali sulle particolarità di svelte
+
+% Per quanto riguarda l'implementazione dell'applicazione con cui si interfaccia l'utente,
+% è stato deciso di utilizzare il framework Svelte. Questa scelta è stata dettata dal fatto
+% che Svelte è un framework molto leggero, che non utilizza un Virtual DOM, ma che si basa
+% su un compilatore che traduce il codice scritto in Javascript, HTML e CSS in codice Javascript
+% nativo. Questo permette di avere un codice molto più leggero e veloce rispetto ad altri
+% framework come React o Vue. Inoltre, Svelte è molto semplice da utilizzare e permette
+% di creare applicazioni web in modo molto intuitivo e veloce.
+
+
+% \subsubsection{Svelte store}
+% Lo "store" in Svelte è un meccanismo per gestire lo stato dell'applicazione in modo reattivo e condiviso tra le diverse parti dell'applicazione. Nella porzione di codice fornita, vengono utilizzati i moduli \texttt{writable} e \texttt{createEventDispatcher} per creare e gestire uno store denominato "Stations". Ecco una breve descrizione di ciò che viene fatto nel codice:
+% \begin{enumerate}[label=\arabic*.]
+%       \item \textbf{Creazione dello Store "Stations"}: La riga
+%             \texttt{export const Stations = writable([])} inizializza uno store
+%             Svelte chiamato "Stations" utilizzando la funzione \texttt{writable}.
+%             Questo store sarà utilizzato per memorizzare e condividere un elenco
+%             di stazioni di ricarica all'interno dell'applicazione.
+
+%       \item \textbf{Definizione di Funzioni per Interagire con lo Store}:
+%             \begin{enumerate}[label=\arabic{enumi}.\arabic*]
+%                   \item \textit{fetchStations}: Questa funzione effettua una richiesta
+%                         HTTP per recuperare l'elenco delle stazioni di ricarica dal server (AKKA SERVER)
+%                         e poi lo trasforma in un formato appropriato. Infine, aggiorna il valore dello
+%                         store "Stations" utilizzando \textit{Stations.set(newStations)}. In questo modo,
+%                         l'elenco delle stazioni è disponibile globalmente all'interno dell'applicazione.
+
+%                   \item \texttt{charge}: Questa funzione invia una richiesta HTTP al server AKKA per avviare una sessione di ricarica per un utente presso una stazione di ricarica specifica. Se l'operazione ha successo, l'applicazione viene reindirizzata alla pagina principale.
+
+%                   \item \texttt{reserve}: Simile a \texttt{charge}, questa funzione invia una richiesta HTTP per prenotare una stazione di ricarica e reindirizza l'applicazione alla pagina principale se ha successo.
+%                   \item \textit{addFavourite}: Questa funzione invia una
+%                         richiesta HTTP al server (EXPRESS SERVER) per aggiungere una stazione
+%                         di ricarica ai preferiti di un utente. Se la richiesta ha successo, viene
+%                         generato un evento personalizzato per notificare altre parti dell'applicazione.
+
+%                   \item \texttt{removeFavourite}: Simile a \texttt{addFavourite}, questa funzione invia una richiesta HTTP per rimuovere una stazione dai preferiti di un utente e genera un evento se l'operazione ha successo.
+%             \end{enumerate}
+% \end{enumerate}
+
+
+% \subsection{Auth Server}
+
+% % parlare di express e nodejs e mongodb
+
+% Tra le funzionalità dell'applicazione, troviamo la possibilità di effettuare la
+% registrazione personale ed il login. Per gestire queste funzionalità è stato utilizzato
+% il framework Express.js, che permette di creare un server web in Node.js e include
+% la configurazione delle opzioni CORS per consentire richieste da qualsiasi origine.
+% Inoltre, per memorizzare i dati degli utenti, è stato utilizzato MongoDB,
+% un database non relazionale che permette di memorizzare i dati in formato JSON.
+% Per interfacciarsi con il database, è stato utilizzato il modulo Mongoose, che
+% permette di definire degli schemi per i dati che vengono memorizzati nel database.
+
+
+% \subsection{Tecnologie impiegate - A}
+
+% In questa sezione verranno presentate le principali tecnologie utilizzate per implementare il sistema e le motivazioni che ci hanno spinto a sceglierle.
+
+% \subsubsection{Applicazione utente}
+% Le tecnologie principali utilizzate per l'implementazione dell'applicazione utente sono:
+
+% \begin{itemize}
+%       \item \textbf{Svelte:} Svelte è il framework front-end principale utilizzato per la creazione
+%             dell'interfaccia utente dell'applicazione. La sua caratteristica distintiva è la compilazione
+%             del codice Svelte in JavaScript altamente ottimizzato. Questo framework permette di scrivere
+%             codice dichiarativo che si traduce in un'applicazione web reattiva ed efficiente.
+
+%       \item \textbf{Svelte Kit:} Svelte Kit è una libreria aggiuntiva che semplifica la gestione
+%             delle route e delle pagine in un'applicazione Svelte. Questo è fondamentale per creare
+%             un'applicazione a pagine multiple in modo strutturato e organizzato.
+
+%       \item \textbf{Leaflet:} Leaflet è una libreria JavaScript utilizzata per creare mappe
+%             interattive. È stata impiegata nell'applicazione per l'integrazione delle mappe e la
+%             visualizzazione delle stazioni di ricarica per veicoli elettrici.
+
+%       \item \textbf{TypeScript:} TypeScript è un linguaggio di programmazione che aggiunge
+%             tipizzazione statica a JavaScript. Questo miglioramento della tipizzazione rende
+%             il codice più affidabile e agevola la manutenzione.
+
+%       \item \textbf{Vite:} Vite è un bundler e un task runner veloce progettato per lo
+%             sviluppo front-end. Grazie al suo sistema di moduli nativo e alla ricarica a caldo,
+%             semplifica notevolmente lo sviluppo e l'ottimizzazione del codice.
+
+%       \item \textbf{Svelte Geolocation:} La dipendenza "svelte-geolocation" è stata utilizzata
+%             per accedere alla funzionalità di geolocalizzazione del dispositivo all'interno
+%             dell'applicazione. Questo è utile per determinare la posizione dell'utente e fornire
+%             informazioni basate sulla sua posizione, ad esempio la visualizzazione delle stazioni di ricarica
+%             più vicine.
+
+%       \item \textbf{Svelte QR Scanner:} "Svelte-qr-scanner" è stato integrato nell'applicazione
+%             per consentire la scansione dei codici QR. Questa funzionalità è utilizzata per diverse
+%             finalità, ad esempio la lettura di QR code per lo sblocco di una colonnina ed il
+%             conseguente inizio della ricarica.
+% \end{itemize}
+
+% \subsubsection{Authentication server}
+
+% Per quanto riguarda il server utilizzato per l'autenticazione sono state utilizzate le seguenti tecnologie:
+
+% \begin{itemize}
+
+%       \item \textbf{express:} Express è un framework web per Node.js che semplifica
+%             la creazione di server web. È utilizzato per gestire le route, le richieste
+%             HTTP e le risposte nell'applicazione.
+
+%       \item \textbf{mongodb:} MongoDB è un database non relazionale orientato ai
+%             documenti. È utilizzato per memorizzare i dati dell'applicazione in formato
+%             JSON-like. MongoDB è una scelta comune per applicazioni che richiedono scalabilità
+%             e flessibilità nella gestione dei dati.
+
+%       \item \textbf{mongoose:} Mongoose è una libreria Node.js che semplifica l'interazione
+%             con il database MongoDB. È utilizzato per definire gli schemi dei dati e per
+%             eseguire operazioni di query nel database in modo più intuitivo.
+
+%       \item \textbf{bcrypt:} bcrypt è una libreria per la crittografia delle password.
+%             È utilizzata per proteggere le password degli utenti nel database, garantendo che
+%             siano memorizzate in modo sicuro.
+
+%       \item \textbf{cors:} CORS (Cross-Origin Resource Sharing) è una tecnologia che
+%             consente di gestire le richieste HTTP provenienti da origini diverse. È utilizzata
+%             per consentire o limitare l'accesso ai servizi del server da parte di domini esterni.
+
+%       \item \textbf{dotenv:} dotenv è un modulo che permette di caricare variabili
+%             d'ambiente da un file di configurazione. È utilizzato per gestire le variabili
+%             d'ambiente nell'applicazione, consentendo la configurazione di parametri
+%             sensibili come le chiavi segrete.
+
+%       \item \textbf{jsonwebtoken:} jsonwebtoken è una libreria per la gestione dei
+%             JSON Web Token (JWT). È utilizzata per l'autenticazione e l'autorizzazione
+%             degli utenti nell'applicazione.
+
+% \end{itemize}
+
+% Le scelte che hanno portato alla decisione dell'utilizzo di MongoDB anzichè
+% di un database relazionale sono state le seguenti:
+
+% \begin{itemize}
+%       \item \textbf{Flessibilità nella struttura dei dati:} MongoDB consente di gestire
+
+%             dati eterogenei senza la necessità di uno schema fisso.
+
+%       \item \textbf{Scalabilità orizzontale:} La capacità di scalare orizzontalmente è
+%             cruciale per gestire grandi volumi di dati e carichi di traffico crescenti.
+
+%       \item \textbf{Velocità di sviluppo:} MongoDB semplifica lo sviluppo rapido,
+%             consentendo di memorizzare e recuperare dati in formato JSON-like.
+
+%       \item \textbf{Integrazione nativa con JavaScript:} Si integra bene con applicazioni
+%             JavaScript, fornendo coerenza tra il modello dati del backend e quello del frontend.
+% \end{itemize}
+
+
 
 %Esporre i principali problemi affrontati durante l'effettiva realizzazione delle componenti hardware/software e illustrare le soluzioni implementative adottate. Se l'elaborato ha previsto l'utilizzo di tecnologie già disponibili sul mercato, discuterne brevemente le caratteristiche e motivarne l'adozione rispetto ad altre soluzioni assimilabili.\\
 

@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/angelacorte/smart-charging-station-report/compare/1.3.0...1.3.1) (2023-09-02)
+
+
+### Documentation
+
+* wrote more on implementation ([901dcef](https://github.com/angelacorte/smart-charging-station-report/commit/901dcef3025e14b08a26d195b02f4949a7d23956))
+
 ## [1.3.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.2.2...1.3.0) (2023-09-02)
 
 

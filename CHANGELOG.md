@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/angelacorte/smart-charging-station-report/compare/1.2.1...1.2.2) (2023-09-02)
+
+
+### Documentation
+
+* add motivations on using mongodb ([8bdc223](https://github.com/angelacorte/smart-charging-station-report/commit/8bdc223eb560e58ded28ffe708b3c974619156d1))
+
 ## [1.2.1](https://github.com/angelacorte/smart-charging-station-report/compare/1.2.0...1.2.1) (2023-09-02)
 
 

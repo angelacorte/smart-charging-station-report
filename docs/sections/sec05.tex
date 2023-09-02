@@ -22,30 +22,30 @@ di creare applicazioni web in modo molto intuitivo e veloce.
 \subsubsection{Svelte store}
 Lo "store" in Svelte è un meccanismo per gestire lo stato dell'applicazione in modo reattivo e condiviso tra le diverse parti dell'applicazione. Nella porzione di codice fornita, vengono utilizzati i moduli \texttt{writable} e \texttt{createEventDispatcher} per creare e gestire uno store denominato "Stations". Ecco una breve descrizione di ciò che viene fatto nel codice:
 \begin{enumerate}[label=\arabic*.]
-    \item \textbf{Creazione dello Store "Stations"}: La riga
-          \texttt{export const Stations = writable([])} inizializza uno store
-          Svelte chiamato "Stations" utilizzando la funzione \texttt{writable}.
-          Questo store sarà utilizzato per memorizzare e condividere un elenco
-          di stazioni di ricarica all'interno dell'applicazione.
+      \item \textbf{Creazione dello Store "Stations"}: La riga
+            \texttt{export const Stations = writable([])} inizializza uno store
+            Svelte chiamato "Stations" utilizzando la funzione \texttt{writable}.
+            Questo store sarà utilizzato per memorizzare e condividere un elenco
+            di stazioni di ricarica all'interno dell'applicazione.
 
-    \item \textbf{Definizione di Funzioni per Interagire con lo Store}:
-          \begin{enumerate}[label=\arabic{enumi}.\arabic*]
-              \item \textit{fetchStations}: Questa funzione effettua una richiesta
-                    HTTP per recuperare l'elenco delle stazioni di ricarica dal server (AKKA SERVER)
-                    e poi lo trasforma in un formato appropriato. Infine, aggiorna il valore dello
-                    store "Stations" utilizzando \textit{Stations.set(newStations)}. In questo modo,
-                    l'elenco delle stazioni è disponibile globalmente all'interno dell'applicazione.
+      \item \textbf{Definizione di Funzioni per Interagire con lo Store}:
+            \begin{enumerate}[label=\arabic{enumi}.\arabic*]
+                  \item \textit{fetchStations}: Questa funzione effettua una richiesta
+                        HTTP per recuperare l'elenco delle stazioni di ricarica dal server (AKKA SERVER)
+                        e poi lo trasforma in un formato appropriato. Infine, aggiorna il valore dello
+                        store "Stations" utilizzando \textit{Stations.set(newStations)}. In questo modo,
+                        l'elenco delle stazioni è disponibile globalmente all'interno dell'applicazione.
 
-              \item \texttt{charge}: Questa funzione invia una richiesta HTTP al server AKKA per avviare una sessione di ricarica per un utente presso una stazione di ricarica specifica. Se l'operazione ha successo, l'applicazione viene reindirizzata alla pagina principale.
+                  \item \texttt{charge}: Questa funzione invia una richiesta HTTP al server AKKA per avviare una sessione di ricarica per un utente presso una stazione di ricarica specifica. Se l'operazione ha successo, l'applicazione viene reindirizzata alla pagina principale.
 
-              \item \texttt{reserve}: Simile a \texttt{charge}, questa funzione invia una richiesta HTTP per prenotare una stazione di ricarica e reindirizza l'applicazione alla pagina principale se ha successo.
-              \item \textit{addFavourite}: Questa funzione invia una
-                    richiesta HTTP al server (EXPRESS SERVER) per aggiungere una stazione
-                    di ricarica ai preferiti di un utente. Se la richiesta ha successo, viene
-                    generato un evento personalizzato per notificare altre parti dell'applicazione.
+                  \item \texttt{reserve}: Simile a \texttt{charge}, questa funzione invia una richiesta HTTP per prenotare una stazione di ricarica e reindirizza l'applicazione alla pagina principale se ha successo.
+                  \item \textit{addFavourite}: Questa funzione invia una
+                        richiesta HTTP al server (EXPRESS SERVER) per aggiungere una stazione
+                        di ricarica ai preferiti di un utente. Se la richiesta ha successo, viene
+                        generato un evento personalizzato per notificare altre parti dell'applicazione.
 
-              \item \texttt{removeFavourite}: Simile a \texttt{addFavourite}, questa funzione invia una richiesta HTTP per rimuovere una stazione dai preferiti di un utente e genera un evento se l'operazione ha successo.
-          \end{enumerate}
+                  \item \texttt{removeFavourite}: Simile a \texttt{addFavourite}, questa funzione invia una richiesta HTTP per rimuovere una stazione dai preferiti di un utente e genera un evento se l'operazione ha successo.
+            \end{enumerate}
 \end{enumerate}
 
 
@@ -77,37 +77,37 @@ In questa sezione verranno presentate le principali tecnologie utilizzate per im
 Le tecnologie principali utilizzate per l'implementazione dell'applicazione utente sono:
 
 \begin{itemize}
-    \item \textbf{Svelte:} Svelte è il framework front-end principale utilizzato per la creazione
-          dell'interfaccia utente dell'applicazione. La sua caratteristica distintiva è la compilazione
-          del codice Svelte in JavaScript altamente ottimizzato. Questo framework permette di scrivere
-          codice dichiarativo che si traduce in un'applicazione web reattiva ed efficiente.
+      \item \textbf{Svelte:} Svelte è il framework front-end principale utilizzato per la creazione
+            dell'interfaccia utente dell'applicazione. La sua caratteristica distintiva è la compilazione
+            del codice Svelte in JavaScript altamente ottimizzato. Questo framework permette di scrivere
+            codice dichiarativo che si traduce in un'applicazione web reattiva ed efficiente.
 
-    \item \textbf{Svelte Kit:} Svelte Kit è una libreria aggiuntiva che semplifica la gestione
-          delle route e delle pagine in un'applicazione Svelte. Questo è fondamentale per creare
-          un'applicazione a pagine multiple in modo strutturato e organizzato.
+      \item \textbf{Svelte Kit:} Svelte Kit è una libreria aggiuntiva che semplifica la gestione
+            delle route e delle pagine in un'applicazione Svelte. Questo è fondamentale per creare
+            un'applicazione a pagine multiple in modo strutturato e organizzato.
 
-    \item \textbf{Leaflet:} Leaflet è una libreria JavaScript utilizzata per creare mappe
-          interattive. È stata impiegata nell'applicazione per l'integrazione delle mappe e la
-          visualizzazione delle stazioni di ricarica per veicoli elettrici.
+      \item \textbf{Leaflet:} Leaflet è una libreria JavaScript utilizzata per creare mappe
+            interattive. È stata impiegata nell'applicazione per l'integrazione delle mappe e la
+            visualizzazione delle stazioni di ricarica per veicoli elettrici.
 
-    \item \textbf{TypeScript:} TypeScript è un linguaggio di programmazione che aggiunge
-          tipizzazione statica a JavaScript. Questo miglioramento della tipizzazione rende
-          il codice più affidabile e agevola la manutenzione.
+      \item \textbf{TypeScript:} TypeScript è un linguaggio di programmazione che aggiunge
+            tipizzazione statica a JavaScript. Questo miglioramento della tipizzazione rende
+            il codice più affidabile e agevola la manutenzione.
 
-    \item \textbf{Vite:} Vite è un bundler e un task runner veloce progettato per lo
-          sviluppo front-end. Grazie al suo sistema di moduli nativo e alla ricarica a caldo,
-          semplifica notevolmente lo sviluppo e l'ottimizzazione del codice.
+      \item \textbf{Vite:} Vite è un bundler e un task runner veloce progettato per lo
+            sviluppo front-end. Grazie al suo sistema di moduli nativo e alla ricarica a caldo,
+            semplifica notevolmente lo sviluppo e l'ottimizzazione del codice.
 
-    \item \textbf{Svelte Geolocation:} La dipendenza "svelte-geolocation" è stata utilizzata
-          per accedere alla funzionalità di geolocalizzazione del dispositivo all'interno
-          dell'applicazione. Questo è utile per determinare la posizione dell'utente e fornire
-          informazioni basate sulla sua posizione, ad esempio la visualizzazione delle stazioni di ricarica
-          più vicine.
+      \item \textbf{Svelte Geolocation:} La dipendenza "svelte-geolocation" è stata utilizzata
+            per accedere alla funzionalità di geolocalizzazione del dispositivo all'interno
+            dell'applicazione. Questo è utile per determinare la posizione dell'utente e fornire
+            informazioni basate sulla sua posizione, ad esempio la visualizzazione delle stazioni di ricarica
+            più vicine.
 
-    \item \textbf{Svelte QR Scanner:} "Svelte-qr-scanner" è stato integrato nell'applicazione
-          per consentire la scansione dei codici QR. Questa funzionalità è utilizzata per diverse
-          finalità, ad esempio la lettura di QR code per lo sblocco di una colonnina ed il
-          conseguente inizio della ricarica.
+      \item \textbf{Svelte QR Scanner:} "Svelte-qr-scanner" è stato integrato nell'applicazione
+            per consentire la scansione dei codici QR. Questa funzionalità è utilizzata per diverse
+            finalità, ad esempio la lettura di QR code per lo sblocco di una colonnina ed il
+            conseguente inizio della ricarica.
 \end{itemize}
 
 \subsubsection{Authentication server}
@@ -116,38 +116,55 @@ Per quanto riguarda il server utilizzato per l'autenticazione sono state utilizz
 
 \begin{itemize}
 
-    \item \textbf{express:} Express è un framework web per Node.js che semplifica
-          la creazione di server web. È utilizzato per gestire le route, le richieste
-          HTTP e le risposte nell'applicazione.
+      \item \textbf{express:} Express è un framework web per Node.js che semplifica
+            la creazione di server web. È utilizzato per gestire le route, le richieste
+            HTTP e le risposte nell'applicazione.
 
-    \item \textbf{mongodb:} MongoDB è un database non relazionale orientato ai
-          documenti. È utilizzato per memorizzare i dati dell'applicazione in formato
-          JSON-like. MongoDB è una scelta comune per applicazioni che richiedono scalabilità
-          e flessibilità nella gestione dei dati.
+      \item \textbf{mongodb:} MongoDB è un database non relazionale orientato ai
+            documenti. È utilizzato per memorizzare i dati dell'applicazione in formato
+            JSON-like. MongoDB è una scelta comune per applicazioni che richiedono scalabilità
+            e flessibilità nella gestione dei dati.
 
-    \item \textbf{mongoose:} Mongoose è una libreria Node.js che semplifica l'interazione
-          con il database MongoDB. È utilizzato per definire gli schemi dei dati e per
-          eseguire operazioni di query nel database in modo più intuitivo.
+      \item \textbf{mongoose:} Mongoose è una libreria Node.js che semplifica l'interazione
+            con il database MongoDB. È utilizzato per definire gli schemi dei dati e per
+            eseguire operazioni di query nel database in modo più intuitivo.
 
-    \item \textbf{bcrypt:} bcrypt è una libreria per la crittografia delle password.
-          È utilizzata per proteggere le password degli utenti nel database, garantendo che
-          siano memorizzate in modo sicuro.
+      \item \textbf{bcrypt:} bcrypt è una libreria per la crittografia delle password.
+            È utilizzata per proteggere le password degli utenti nel database, garantendo che
+            siano memorizzate in modo sicuro.
 
-    \item \textbf{cors:} CORS (Cross-Origin Resource Sharing) è una tecnologia che
-          consente di gestire le richieste HTTP provenienti da origini diverse. È utilizzata
-          per consentire o limitare l'accesso ai servizi del server da parte di domini esterni.
+      \item \textbf{cors:} CORS (Cross-Origin Resource Sharing) è una tecnologia che
+            consente di gestire le richieste HTTP provenienti da origini diverse. È utilizzata
+            per consentire o limitare l'accesso ai servizi del server da parte di domini esterni.
 
-    \item \textbf{dotenv:} dotenv è un modulo che permette di caricare variabili
-          d'ambiente da un file di configurazione. È utilizzato per gestire le variabili
-          d'ambiente nell'applicazione, consentendo la configurazione di parametri
-          sensibili come le chiavi segrete.
+      \item \textbf{dotenv:} dotenv è un modulo che permette di caricare variabili
+            d'ambiente da un file di configurazione. È utilizzato per gestire le variabili
+            d'ambiente nell'applicazione, consentendo la configurazione di parametri
+            sensibili come le chiavi segrete.
 
-    \item \textbf{jsonwebtoken:} jsonwebtoken è una libreria per la gestione dei
-          JSON Web Token (JWT). È utilizzata per l'autenticazione e l'autorizzazione
-          degli utenti nell'applicazione.
+      \item \textbf{jsonwebtoken:} jsonwebtoken è una libreria per la gestione dei
+            JSON Web Token (JWT). È utilizzata per l'autenticazione e l'autorizzazione
+            degli utenti nell'applicazione.
 
 \end{itemize}
 
+Le scelte che hanno portato alla decisione dell'utilizzo di MongoDB anzichè
+di un database relazionale sono state le seguenti:
+
+\begin{itemize}
+      \item \textbf{Flessibilità nella struttura dei dati:} MongoDB consente di gestire
+
+            dati eterogenei senza la necessità di uno schema fisso.
+
+      \item \textbf{Scalabilità orizzontale:} La capacità di scalare orizzontalmente è
+            cruciale per gestire grandi volumi di dati e carichi di traffico crescenti.
+
+      \item \textbf{Velocità di sviluppo:} MongoDB semplifica lo sviluppo rapido,
+            consentendo di memorizzare e recuperare dati in formato JSON-like.
+
+      \item \textbf{Integrazione nativa con JavaScript:} Si integra bene con applicazioni
+            JavaScript, fornendo coerenza tra il modello dati del backend e quello del frontend.
+\end{itemize}
 
 
 
@@ -157,9 +174,9 @@ Per quanto riguarda il server utilizzato per l'autenticazione sono state utilizz
 
 Considerazioni che hanno guidato la scelta della tecnologia:
 \begin{itemize}
-    \item Il sistema è distribuito: vari componenti software, detti nodi, collocati su macchine diverse comunicano tra di loro attraverso una rete e realizzano un comportamento.
-    \item Il sistema deve essere scalabile: deve essere semplice aggiungere e rimuovere nodi dal sistema.
-    \item Il sistema deve essere robusto: deve essere in grado di tollerare guasti e malfunzionamenti di alcuni nodi.
+      \item Il sistema è distribuito: vari componenti software, detti nodi, collocati su macchine diverse comunicano tra di loro attraverso una rete e realizzano un comportamento.
+      \item Il sistema deve essere scalabile: deve essere semplice aggiungere e rimuovere nodi dal sistema.
+      \item Il sistema deve essere robusto: deve essere in grado di tollerare guasti e malfunzionamenti di alcuni nodi.
 \end{itemize}
 
 %Esporre i principali problemi affrontati durante l'effettiva realizzazione delle componenti hardware/software e illustrare le soluzioni implementative adottate. Se l'elaborato ha previsto l'utilizzo di tecnologie già disponibili sul mercato, discuterne brevemente le caratteristiche e motivarne l'adozione rispetto ad altre soluzioni assimilabili.\\

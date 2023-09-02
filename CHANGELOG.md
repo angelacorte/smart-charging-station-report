@@ -1,3 +1,15 @@
+## [1.1.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.0.1...1.1.0) (2023-09-02)
+
+
+### Features
+
+* add chapters ([2a5bcf6](https://github.com/angelacorte/smart-charging-station-report/commit/2a5bcf6ebe6e8fe2774bf2d472b67fa7e692d913))
+
+
+### Bug Fixes
+
+* remove bug that would not compile pdf ([3586590](https://github.com/angelacorte/smart-charging-station-report/commit/3586590177dfea63d54d2bb3452437802ba3077a))
+
 ## [1.0.1](https://github.com/angelacorte/smart-charging-station-report/compare/1.0.0...1.0.1) (2023-09-02)
 
 

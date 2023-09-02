@@ -1,3 +1,20 @@
+## [1.2.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.1.1...1.2.0) (2023-09-02)
+
+
+### Features
+
+* add architecture diagram ([94c9021](https://github.com/angelacorte/smart-charging-station-report/commit/94c902120fb252bd3eaceacbf1b8f5105d985156))
+
+
+### Documentation
+
+* add first part of implementation chapter ([a95852a](https://github.com/angelacorte/smart-charging-station-report/commit/a95852a26f5c79d981091e61873c8869391575fa))
+
+
+### Refactoring
+
+* move into appropriate section ([463da6f](https://github.com/angelacorte/smart-charging-station-report/commit/463da6f3d529f87cbf397f95c7cac42d664eef20))
+
 ## [1.1.1](https://github.com/angelacorte/smart-charging-station-report/compare/1.1.0...1.1.1) (2023-09-02)
 
 

@@ -8,10 +8,61 @@
 
 \subsection{User App - A}
 
-Considerazioni generali sulle particolarità di svelte
+%Considerazioni generali sulle particolarità di svelte
+
+Per quanto riguarda l'implementazione dell'applicazione con cui si interfaccia l'utente,
+è stato deciso di utilizzare il framework Svelte. Questa scelta è stata dettata dal fatto
+che Svelte è un framework molto leggero, che non utilizza un Virtual DOM, ma che si basa
+su un compilatore che traduce il codice scritto in Javascript, HTML e CSS in codice Javascript
+nativo. Questo permette di avere un codice molto più leggero e veloce rispetto ad altri
+framework come React o Vue. Inoltre, Svelte è molto semplice da utilizzare e permette
+di creare applicazioni web in modo molto intuitivo e veloce.
+
+
 \subsubsection{Svelte store}
+Lo "store" in Svelte è un meccanismo per gestire lo stato dell'applicazione in modo reattivo e condiviso tra le diverse parti dell'applicazione. Nella porzione di codice fornita, vengono utilizzati i moduli \texttt{writable} e \texttt{createEventDispatcher} per creare e gestire uno store denominato "Stations". Ecco una breve descrizione di ciò che viene fatto nel codice:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Creazione dello Store "Stations"}: La riga
+          \texttt{export const Stations = writable([])} inizializza uno store
+          Svelte chiamato "Stations" utilizzando la funzione \texttt{writable}.
+          Questo store sarà utilizzato per memorizzare e condividere un elenco
+          di stazioni di ricarica all'interno dell'applicazione.
+
+    \item \textbf{Definizione di Funzioni per Interagire con lo Store}:
+          \begin{enumerate}[label=\arabic{enumi}.\arabic*]
+              \item \textit{fetchStations}: Questa funzione effettua una richiesta
+                    HTTP per recuperare l'elenco delle stazioni di ricarica dal server (AKKA SERVER)
+                    e poi lo trasforma in un formato appropriato. Infine, aggiorna il valore dello
+                    store "Stations" utilizzando \textit{Stations.set(newStations)}. In questo modo,
+                    l'elenco delle stazioni è disponibile globalmente all'interno dell'applicazione.
+
+              \item \texttt{charge}: Questa funzione invia una richiesta HTTP al server AKKA per avviare una sessione di ricarica per un utente presso una stazione di ricarica specifica. Se l'operazione ha successo, l'applicazione viene reindirizzata alla pagina principale.
+
+              \item \texttt{reserve}: Simile a \texttt{charge}, questa funzione invia una richiesta HTTP per prenotare una stazione di ricarica e reindirizza l'applicazione alla pagina principale se ha successo.
+              \item \textit{addFavourite}: Questa funzione invia una
+                    richiesta HTTP al server (EXPRESS SERVER) per aggiungere una stazione
+                    di ricarica ai preferiti di un utente. Se la richiesta ha successo, viene
+                    generato un evento personalizzato per notificare altre parti dell'applicazione.
+
+              \item \texttt{removeFavourite}: Simile a \texttt{addFavourite}, questa funzione invia una richiesta HTTP per rimuovere una stazione dai preferiti di un utente e genera un evento se l'operazione ha successo.
+          \end{enumerate}
+\end{enumerate}
+
+
 \subsection{Auth Server}
-parlare di express e nodejs e mongodb
+
+% parlare di express e nodejs e mongodb
+
+Tra le funzionalità dell'applicazione, troviamo la possibilità di effettuare la
+registrazione personale ed il login. Per gestire queste funzionalità è stato utilizzato
+il framework Express.js, che permette di creare un server web in Node.js e include
+la configurazione delle opzioni CORS per consentire richieste da qualsiasi origine.
+Inoltre, per memorizzare i dati degli utenti, è stato utilizzato MongoDB,
+un database non relazionale che permette di memorizzare i dati in formato JSON.
+Per interfacciarsi con il database, è stato utilizzato il modulo Mongoose, che
+permette di definire degli schemi per i dati che vengono memorizzati nel database.
+
+
 
 \subsection{Cluster}
 \subsubsection{Actor Model}
@@ -20,7 +71,7 @@ parlare di express e nodejs e mongodb
 
 \subsection{Tecnologie impiegate - A}
 In questa sezione elencheremo le principali tecnologie utilizzate per implementare il sistema e le motivazioni che ci hanno spinto a sceglierle.
-...
+anche qr scanning, geolocalizzazione e mappe...
 
 ===================================================================================== \\
 Esporre i principali problemi affrontati durante l'effettiva realizzazione delle componenti hardware/software e illustrare le soluzioni implementative adottate. Se l'elaborato ha previsto l'utilizzo di tecnologie già disponibili sul mercato, discuterne brevemente le caratteristiche e motivarne l'adozione rispetto ad altre soluzioni assimilabili.\\
@@ -32,12 +83,12 @@ Vincoli circa la lunghezza della sezione (escluse didascalie, tabelle, testo nel
 
 \vspace{1cm}
 \begin{tabular}{l|rr}
- & Numero minimo di battute & Numero massimo di battute \\
- \hline
- 1 componente & 5000 & 11000 \\
- 2 componenti & 8000 & 16000 \\
- 3 componenti & 10000 & 21000 \\
- \hline
+                 & Numero minimo di battute & Numero massimo di battute \\
+    \hline
+    1 componente & 5000                     & 11000                     \\
+    2 componenti & 8000                     & 16000                     \\
+    3 componenti & 10000                    & 21000                     \\
+    \hline
 \end{tabular}
 
 

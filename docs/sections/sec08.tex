@@ -3,15 +3,64 @@
 %	PIANO DI LAVORO
 %----------------------------------------------------------------------------------------
 
-\section{Piano di lavoro - A}
-Il gruppo ha concordato sull'adottare un approccio allo sviluppo ispirato alle metodologie agili, con sprint settimanali. In particolare, il gruppo ha tenuto incontri di sprint planning
-in cui veniva pianificato il lavoro settimanale sulla base dei requisiti utente, da suddividersi equamente tra i membri. A questi incontri sono state aggiunte retrospettive
+\section{Piano di lavoro}
+È stata concordata l'adozione di un approccio allo sviluppo ispirato alle
+metodologie agili, con sprint settimanali. Gli sprint settimanali sono stati pianificati in incontri di sprint planning, durante i quali veniva definito il lavoro da svolgere per la settimana successiva. Questo lavoro veniva equamente suddiviso tra i membri del team, tenendo conto delle competenze e delle risorse disponibili.
+
+
+A questi incontri sono state aggiunte retrospettive
 per ogni sprint per fare il punto sullo stato di completamento del lavoro pianificato.\\
 
-\subsection{Metodologia adottata - A}
-ispirata alle metodologie agili con sprint settimanali
+Inizialmente, è stato condotto uno studio approfondito sulle tecnologie disponibili e sullo stato attuale delle conoscenze nel settore. Questo studio ha permesso di prendere decisioni informate sulla scelta delle tecnologie da utilizzare e di adottare le metodologie più avanzate e adatte al contesto di sviluppo.\\
 
-\subsubsection{Sprints - A}
+In seguito, è stato pianificato il lavoro da svolgere per ogni sprint, tenendo conto
+delle risorse disponibili e delle priorità.\\
+
+
+
+
+\subsection{Metodologia adottata}
+Un elemento chiave di questa metodologia è stata l'aggiunta delle retrospettive alla fine di ogni sprint. Queste retrospettive hanno permesso al team di fare il punto sullo stato di completamento del lavoro pianificato e di identificare eventuali aree di miglioramento. Questo ciclo di feedback continuo ha contribuito a ottimizzare il processo di sviluppo e a garantire una progressiva evoluzione del progetto.
+
+L'adozione di un approccio agile con sprint settimanali ha consentito al team di sviluppo di mantenere un alto grado di flessibilità, di adattarsi rapidamente ai cambiamenti e di garantire una progressiva evoluzione del progetto, il tutto basato su uno studio approfondito delle tecnologie e delle metodologie disponibili.
+
+\subsubsection{Sprints}
+
+\begin{itemize}
+    \item Sprint 1
+          \begin{itemize}
+
+              \item Studio comportamento ideale del sistema ad attori (Cortecchia e Micelli - 1 giorno uomo a testa)
+              \item Setup CI/CD (Micelli - 1.5 giorni uomo)
+              \item Setup tests (Micelli - 1 giorno uomo)
+              \item Implementazione dell'attore inerente alla colonnina di ricarica e relativi test (Cortecchia - 2 giorni uomo a testa)
+              \item Implementazione dell'attore inerente alla macchina e relativi test (Micelli - 2 giorni uomo)
+          \end{itemize}
+
+    \item Sprint 2
+          \begin{itemize}
+              \item Studio del framework Svelte (Cortecchia - 1 giorno uomo)
+              \item Implementazione di una prima versione della web app (Cortecchia - 2 giorni uomo)
+              \item Implementazione dei servizi REST (e relativo studio) lato colonnine (Micelli - 2.5 giorni uomo)
+          \end{itemize}
+
+    \item Sprint 3
+          \begin{itemize}
+
+              \item Integrazione del servizio di mappe e geolocalizzazione (Cortecchia - 2.5 giorni uomo)
+              \item Integrazione del servizio di scanning QR code (Cortecchia - 1 giorni uomo)
+              \item Utilizzo di Akka Cluster per i servizi delle colonnine di ricarica (Micelli - 2 giorni uomo)
+              \item Refactoring e rimozione degli attori inerenti alle macchine (Micelli - 1 giorno uomo)
+
+          \end{itemize}
+    \item Sprint 4
+          \begin{itemize}
+              \item Implementazione web server express (Cortecchia - 1 giorno uomo)
+              \item Configurazione database MongoDB (Cortecchia - 0.5 giorno uomo)
+              \item Implementazione dei servizi di autenticazione (Cortecchia - 1 giorno uomo)
+              \item Implementazione Akka HTTP per la comunicazione con webapp (Micelli - 3 giorni uomo)
+          \end{itemize}
+\end{itemize}
 
 
 % In questa sezione devono essere chiariti i compiti svolti da ciascun candidato nel caso in cui il gruppo abbia più di un componente.\\

@@ -43,36 +43,34 @@ query direttamente sui Charging Station Actors.\\
 I vari Charging Station Actors dunque gestiscono in maniera indipendente le Charging Station, e comunicano in maniera peer-to-peer con il Charging Station Provider, il quale può sia essere notificato
 dai Charging Station Actors di eventuali cambiamenti di stato, sia interrogato dalla User App per ottenere informazioni sullo stato delle Charging Station attraverso l'API REST esposta dal Charging Station Service.\\
 
+L'architettura complessiva del sistema è dunque riassunta nel seguente diagramma:
 
-
-Considerazioni che hanno guidato la scelta della tecnologia:
-\begin{itemize}
-    \item Il sistema è distribuito: vari componenti software, detti nodi, collocati su macchine diverse comunicano tra di loro attraverso una rete e realizzano un comportamento.
-    \item Il sistema deve essere scalabile: deve essere semplice aggiungere e rimuovere nodi dal sistema.
-    \item Il sistema deve essere robusto: deve essere in grado di tollerare guasti e malfunzionamenti di alcuni nodi.
-\end{itemize}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/architecture.png}
+    \caption{Diagramma dei Componenti per l'architettura del sistema}
+    \label{fig:architecture}
+\end{figure}
 
 \subsection*{Design di Dettaglio}
 TODO: spiega le interazioni tra gli attori e componenti del sistema, con descrizione sia testuale che con diagrammi di sequenza.\\
 
 
+%Devono essere esposte le scelte progettuali operate nelle varie fasi di sviluppo dell'elaborato.\\
 
-=============================================================================================================== \\
-Devono essere esposte le scelte progettuali operate nelle varie fasi di sviluppo dell'elaborato.\\
+%In questa sezione devono essere documentati gli schemi di progetto relativamente all'architettura complessiva del sistema e alle sue componenti di rilievo che possano meritare un'analisi di dettaglio. Per le componenti software si può ricorrere ad esempio a diagrammi delle classi, di sequenza, stato, attività. Per le componenti hardware è possibile includere opportuni schemi in grado di descrivere l'architettura fisica adottata.\\
 
-In questa sezione devono essere documentati gli schemi di progetto relativamente all'architettura complessiva del sistema e alle sue componenti di rilievo che possano meritare un'analisi di dettaglio. Per le componenti software si può ricorrere ad esempio a diagrammi delle classi, di sequenza, stato, attività. Per le componenti hardware è possibile includere opportuni schemi in grado di descrivere l'architettura fisica adottata.\\
+%Vincoli circa la lunghezza della sezione (escluse didascalie, tabelle, testo nelle immagini, schemi):
 
-Vincoli circa la lunghezza della sezione (escluse didascalie, tabelle, testo nelle immagini, schemi):
-
-\vspace{1cm}
-\begin{tabular}{l|rr}
- & Numero minimo di battute & Numero massimo di battute \\
- \hline
- 1 componente & 9000 & 18000 \\
- 2 componenti & 12000 & 21000 \\
- 3 componenti & 15000 & 24000 \\
- \hline
-\end{tabular}
+%\vspace{1cm}
+%\begin{tabular}{l|rr}
+% & Numero minimo di battute & Numero massimo di battute \\
+% \hline
+% 1 componente & 9000 & 18000 \\
+% 2 componenti & 12000 & 21000 \\
+% 3 componenti & 15000 & 24000 \\
+% \hline
+%\end{tabular}
 
 
 \newpage

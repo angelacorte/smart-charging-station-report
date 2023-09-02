@@ -1,0 +1,27 @@
+@startuml architecture
+interface "REST API" as r1
+interface "HTTP" as r2
+interface "AKKA Cluster" as ac
+
+package "cluster" as c {
+  [ChargingStationActor] as CSA
+  CSA - ac
+}
+
+package "service" as S {
+  [ChargingStationProvider] as CSP
+  CSP --> ac
+  CSP - r2
+}
+
+package "app" as A {
+  [UserApp] as UA
+  UA --> r1
+  UA --> r2
+}
+
+package "server" as S1 {
+  [AuthServer] as AS
+  AS - r1
+}
+@enduml

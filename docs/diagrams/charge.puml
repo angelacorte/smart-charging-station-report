@@ -1,0 +1,43 @@
+@startuml charge
+actor User as U
+participant UserApp as UA
+participant ChargingStationService as CSS
+participant ChargingStationProvider as CSP
+participant ChargingStationActor as CSA
+
+U --> UA : select charging station
+U --> UA : read QR
+UA --> U : request to charge at this Charging Station?
+U --> UA : [yes]
+UA --> CSS : charge(chargeRequest)
+CSS --> CSP : AskChargingStationToCharge(chargeRequest)
+CSP <- CSP
+
+alt found
+ CSP --> CSA : Charge
+ CSA <- CSA
+
+ alt free
+  CSA --> CSP : Success
+  CSP --> CSS : Success
+ else reserved
+  CSA <- CSA : check the reservation
+  alt ok
+   CSA --> CSP : Success
+   CSP --> CSS : Success
+  else not ok
+   CSA --> CSP : Failure
+   CSP --> CSS : Failure
+  end
+ else charging
+  CSA --> CSP : Failure("charging")
+  CSP --> CSS : Failure("charging")
+ end
+else not found
+ CSP --> CSS : Not Found
+end
+
+CSS --> UA : response
+UA --> U : display response
+
+@enduml

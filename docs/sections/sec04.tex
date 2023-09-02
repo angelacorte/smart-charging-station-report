@@ -54,10 +54,9 @@ L'architettura complessiva del sistema è dunque riassunta nel seguente diagramm
 
 \subsubsection{Interazione tra le componenti del sistema}
 Una volta individuate le componenti principali del sistema, il gruppo ha definito le interazioni tra di esse, in modo da poter definire le interfacce di comunicazione tra loro.\\
-In seguito saranno riportate le interazioni tra le componenti del sistema, elencate prima per caso d'uso e poi per dominio a cui afferiscono.\\
+In seguito saranno riportate le interazioni tra le componenti del sistema, elencate per caso d'uso.\\
 
-\paragraph{Interazioni per caso d'uso}
-Registrazione di un utente:\\
+\paragraph{Signup di un utente}
 L'utente inizia il processo di registrazione nell'applicazione. L'utente interagisce con l'applicazione utente e fornisce un nome utente, un indirizzo email e una password per registrarsi.
 
 L'applicazione utente invia quindi una richiesta di registrazione al servizio di autenticazione. Questo, a sua volta, comunica con un database degli utenti.
@@ -76,7 +75,7 @@ Questa interazione è riassunta nel seguente diagramma di sequenza:
     \label{fig:signup}
 \end{figure}
 
-Login di un utente:\\
+\paragraph{Login di un utente}
 L'utente inizia il processo di accesso (login) nell'applicazione. L'utente interagisce con l'applicazione utente e fornisce il proprio indirizzo email e la password per effettuare l'accesso.
 
 L'applicazione utente invia quindi una richiesta di accesso al Servizio di Autenticazione. Questo servizio comunica con un database degli utenti.
@@ -95,7 +94,7 @@ Questa interazione è riassunta nel seguente diagramma di sequenza:
     \label{fig:login}
 \end{figure}
 
-Visualizzazione dello stato di una stazione di ricarica:\\
+\paragraph{Visualizzazione dello stato di una stazione di ricarica}
 L'utente interagisce con l'applicazione utente e seleziona una stazione di ricarica.
 
 L'applicazione utente invia quindi una richiesta per ottenere informazioni sulla stazione di ricarica selezionata al Charging Station Service. Questo a sua volta comunica con il Provider.
@@ -115,10 +114,72 @@ Questa interazione è riassunta nel seguente diagramma di sequenza:
     \label{fig:ask-station}
 \end{figure}
 
+\paragraph{Visualizzazione dello stato di tutte le stazioni di ricarica all'interno della mappa}
+L'utente interagisce con l'applicazione utente ("UserApp") e seleziona la visualizzazione della mappa.
 
-\paragraph{Interazioni all'interno del Charging Station Domain}
+L'applicazione utente invia quindi una richiesta per ottenere l'elenco di tutte le stazioni di ricarica disponibili al Charging Station Service. Il Servizio a sua volta comunica con il Provider.
 
-\subsection*{Design di Dettaglio}
+Esso cerca tutte le stazioni di ricarica disponibili all'interno del suo registro. Successivamente, restituisce l'elenco completo delle stazioni di ricarica al Charging Station Service.
+
+Quest'ultimo, a sua volta, restituisce l'elenco delle stazioni di ricarica all'applicazione utente. Infine, quest'ultima mostra le stazioni di ricarica all'interno della mappa all'utente.
+
+Questa interazione è riassunta nel seguente diagramma di sequenza:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/ask-all-stations.png}
+    \caption{Diagramma delle sequenze per la visualizzazione dello stato di tutte le stazioni di ricarica all'interno della mappa}
+    \label{fig:ask-all-stations}
+\end{figure}
+
+\paragraph{Prenotazione di una stazione di ricarica}
+L'utente interagisce con l'applicazione utente e seleziona una stazione di ricarica da prenotare.
+
+Successivamente, l'utente invia una richiesta di prenotazione al Charging Station Service tramite l'applicazione utente. Il Service comunica con il Charging Station Provider per richiedere la prenotazione della stazione selezionata.
+
+Il Provider, a sua volta, comunica con il Charging Station Actor per effettuare la prenotazione. Se la stazione di ricarica è stata trovata, il Provider richiede all'attore della Stazione di Ricarica la prenotazione, il quale gli comunica l'esito.
+
+Nel caso in cui la stazione di ricarica sia libera, l'attore della Stazione di Ricarica conferma la prenotazione e comunica al Provider che la prenotazione è avvenuta con successo. Il Provider, a sua volta, comunica al Service il successo della prenotazione, il quale comunica l'esito positivo all'applicazione utente.
+
+Tuttavia, se la stazione di ricarica è già prenotata o è attualmente in uso per la ricarica, l'attore della Stazione di Ricarica comunica al Provider che la prenotazione non può essere effettuata. Il Provider comunica quindi al Service il fallimento della prenotazione, e questo a sua volta comunica all'applicazione utente l'esito negativo della prenotazione.
+
+Nel caso in cui la stazione di ricarica non venga trovata, il Provider lo comunica al Service, che comunica quindi all'applicazione utente che la stazione di ricarica selezionata non è disponibile.\\
+
+Questa interazione è riassunta nel seguente diagramma di sequenza:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/reserve-station.png}
+    \caption{Diagramma delle sequenze per la prenotazione di una stazione di ricarica}
+    \label{fig:reserve-station}
+\end{figure}
+
+\paragraph{Richiesta di ricarica di un veicolo}
+L'utente interagisce con l'applicazione utente  e seleziona una stazione di ricarica. Successivamente, l'utente legge un codice QR associato alla stazione.
+
+L'applicazione utente richiede quindi la possibilità di effettuare una ricarica presso la stazione selezionata e comunica al Charging Station Service la richiesta di ricarica. Il Servizio Stazioni di Ricarica comunica con il Charging Station Provider per richiedere l'autorizzazione alla ricarica.
+
+Il Provider, a sua volta, comunica con il Charging Station Actor per autorizzare la ricarica.
+
+Nel caso in cui la stazione di ricarica sia libera, l'attore comunica al Provider il successo della richiesta. Questo, a sua volta, comunica al Service il successo dell'autorizzazione, che lo comunica all'applicazione utente.
+
+Se la stazione di ricarica è già prenotata, l'attore della Stazione di Ricarica verifica la prenotazione o lo stato di carica attuale. Se la prenotazione è valida, l'attore autorizza la ricarica. Altrimenti, se la prenotazione non è valida, l'attore comunica che la stazione non può essere utilizzata per la ricarica. Il Provider comunica quindi al Service il fallimento dell'autorizzazione, e questo a sua volta comunica all'applicazione utente l'esito negativo della richiesta di ricarica.
+
+Se la stazione di ricarica è attualmente in uso, l'attore comunica che la stazione non può essere utilizzata per la ricarica. Il Provider comunica quindi al Service il fallimento dell'autorizzazione, e questo a sua volta comunica all'applicazione utente l'esito negativo della richiesta di ricarica.
+
+Nel caso in cui la stazione di ricarica non venga trovata (caso "not found"), il Fornitore Stazioni di Ricarica comunica al Servizio Stazioni di Ricarica che la stazione non è stata trovata. Il Servizio Stazioni di Ricarica comunica quindi all'applicazione utente che la stazione di ricarica selezionata non è disponibile.
+
+Questa interazione è riassunta nel seguente diagramma di sequenza:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/charge.png}
+    \caption{Diagramma delle sequenze per la richiesta di ricarica di un veicolo}
+    \label{fig:charge}
+\end{figure}
+
+
+\subsection{Design di Dettaglio}
 %TODO: spiega le interazioni tra gli attori e componenti del sistema, con descrizione sia testuale che con diagrammi di sequenza.
 La fase di Design di Dettaglio affronta la progettazione del sistema ad un livello di granularità più fine, siccome è in questa fase che ci si occupa di progettare i singoli componenti del sistema ed il loro protocollo di interazione.\\
 \subsubsection{User Domain - A}
@@ -131,9 +192,22 @@ metodologia di interazione tra essi. \\
 In questo paradigma, un attore è un'entità computazionale che può ricevere messaggi, elaborarli e rispondere con altri messaggi. Gli attori sono organizzati in gerarchie, dove ogni attore ha un solo attore padre e può avere più attori figli.\\
 Ogni attore possiede una \textbf{mailbox}, ovvero una coda di messaggi in entrata, e un \textbf{behavior}, ovvero un insieme di regole che definiscono il comportamento dell'attore alla ricezione di un messaggio.\\
 
-Dunque il Message Passing System definito nelle fasi precedenti è stato
+Una particolarità del modello ad attori è che può efficacemente modellare una macchina a stati finiti, in quanto l'attore può cambiare il suo comportamento in base al messaggio ricevuto e gli stati finiti corrispondono al set di messaggi ai quali l'attore può rispondere.\\
+Questo ha permesso di modellare efficacemente il comportamento delle Charging Station, che possono trovarsi in uno dei seguenti stati:
+\begin{itemize}
+    \item \textbf{Free}: la stazione è disponibile per la ricarica.
+    \item \textbf{Reserved}: la stazione è stata prenotata.
+    \item \textbf{Charging}: la stazione è attualmente in uso per la ricarica.
+\end{itemize}
 
+La macchina a stati finiti per il Charging Station Actor è riassunta nel seguente diagramma:
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/cs-state.png}
+    \caption{Diagramma della macchina a stati finiti per il Charging Station Actor}
+    \label{fig:cs-state}
+\end{figure}
 
 
 %Devono essere esposte le scelte progettuali operate nelle varie fasi di sviluppo dell'elaborato.\\

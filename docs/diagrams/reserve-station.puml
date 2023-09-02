@@ -1,0 +1,28 @@
+@startuml reserve-station
+actor User as U
+participant UserApp as UA
+participant ChargingStationService as CSS
+participant ChargingStationProvider as CSP
+participant ChargingStationActor as CSA
+
+U --> UA : select charging station
+U --> UA : reserve charging station
+UA --> CSS : reserve-station(reservation)
+CSS --> CSP : AskToReserveChargingStation(reservation)
+CSP --> CSA : Reserve(reservation)
+CSA <- CSA
+
+alt free
+ CSA --> CSP : Success
+ CSP --> CSS : Success
+else reserved
+ CSA --> CSP : Failure("reserved")
+ CSP --> CSS : Failure("reserved")
+else charging
+ CSA --> CSP : Failure("charging")
+ CSP --> CSS : Failure("charging")
+end
+
+CSS --> UA : response
+UA --> U : display response
+@enduml

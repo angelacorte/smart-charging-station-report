@@ -1,0 +1,14 @@
+@startuml cs-actor-state
+state "Free" as F
+state "Charging" as C
+state "Reserved" as R
+
+[*] -> F
+
+F -down-> C : Charge
+C <- C : charging
+C -> F : StopCharge
+F -> R : Reserve
+R -> C : [request ok] Charge
+
+@enduml

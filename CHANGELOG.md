@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/angelacorte/smart-charging-station-report/compare/1.2.0...1.2.1) (2023-09-02)
+
+
+### Documentation
+
+* add tecnologies section ([995ff19](https://github.com/angelacorte/smart-charging-station-report/commit/995ff19ba93d24056eea137cbf079f428c89b4af))
+
 ## [1.2.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.1.1...1.2.0) (2023-09-02)
 
 

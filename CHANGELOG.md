@@ -1,3 +1,11 @@
+## [1.3.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.2.2...1.3.0) (2023-09-02)
+
+
+### Features
+
+* add signup diagram ([4dde9ac](https://github.com/angelacorte/smart-charging-station-report/commit/4dde9ac90986abc6388b952b9b34c0da4aec3a27))
+* added sequence diagrams ([fd1fcda](https://github.com/angelacorte/smart-charging-station-report/commit/fd1fcdad53d3e0579b919da4a310a9d1648dab13))
+
 ## [1.2.2](https://github.com/angelacorte/smart-charging-station-report/compare/1.2.1...1.2.2) (2023-09-02)
 
 

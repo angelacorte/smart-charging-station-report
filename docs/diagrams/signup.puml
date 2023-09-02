@@ -1,0 +1,19 @@
+@startuml signup
+actor User as U
+participant UserApp as UA
+participant AuthServer as AS
+participant UserDB as DB
+
+U --> UA : register(username, mail, pwd)
+UA --> AS : signup(username, mail, pwd)
+AS --> DB : find(mail)
+DB <- DB
+
+alt not found
+ AS --> UA : user(username, mail, pwd)
+else found
+ AS --> UA : Already in use
+end
+
+UA --> U : response
+@enduml

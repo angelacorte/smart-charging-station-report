@@ -1,0 +1,21 @@
+@startuml ask-station
+actor User as U
+participant UserApp as UA
+participant ChargingStationService as CSS
+participant ChargingStationProvider as CSP
+
+U --> UA : select charging station
+UA --> CSS : chargingstations/id
+CSS --> CSP : AskChargingStation(id)
+CSP <- CSP
+
+alt found
+ CSP --> CSS : Success(chargingStation)
+else not found
+ CSP --> CSS : Failure
+end
+
+CSS --> UA : response
+UA --> U : display response
+
+@enduml

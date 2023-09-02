@@ -1,7 +1,7 @@
 @startuml architecture
 interface "REST API" as r1
 interface "HTTP" as r2
-interface "AKKA Cluster" as ac
+interface "Message Passing System" as ac
 
 package "cluster" as c {
   [ChargingStationActor] as CSA
@@ -10,8 +10,10 @@ package "cluster" as c {
 
 package "service" as S {
   [ChargingStationProvider] as CSP
+  [ChargingStationService] as CSS
+  CSP - CSS
   CSP --> ac
-  CSP - r2
+  CSS - r2
 }
 
 package "app" as A {

@@ -1,0 +1,19 @@
+@startuml login
+actor User as U
+participant UserApp as UA
+participant AuthServer as AS
+participant UserDB as DB
+
+U --> UA : login(mail, pwd)
+UA --> AS : login(mail, pwd)
+AS --> DB : getAuthenticated(mail, pwd)
+DB <- DB
+
+alt success
+ AS --> UA : ok
+else failure
+ AS --> UA : not ok: wrong mail or password
+end
+
+UA --> U : response
+@enduml

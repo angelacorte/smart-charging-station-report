@@ -3,7 +3,7 @@
 %----------------------------------------------------------------------------------------
 
 \section{Progettazione}
-Il processo di sviluppo adottato ha visto due fasi di progettazione ben distinte: il design architetturale e il design di dettaglio.\\ 
+Il processo di sviluppo adottato ha visto due fasi di progettazione ben distinte: il design architetturale e il design di dettaglio.\\
 
 \subsection{Design Architetturale}
 
@@ -52,8 +52,88 @@ L'architettura complessiva del sistema è dunque riassunta nel seguente diagramm
     \label{fig:architecture}
 \end{figure}
 
+\subsubsection{Interazione tra le componenti del sistema}
+Una volta individuate le componenti principali del sistema, il gruppo ha definito le interazioni tra di esse, in modo da poter definire le interfacce di comunicazione tra loro.\\
+In seguito saranno riportate le interazioni tra le componenti del sistema, elencate prima per caso d'uso e poi per dominio a cui afferiscono.\\
+
+\paragraph{Interazioni per caso d'uso}
+Registrazione di un utente:\\
+L'utente inizia il processo di registrazione nell'applicazione. L'utente interagisce con l'applicazione utente e fornisce un nome utente, un indirizzo email e una password per registrarsi.
+
+L'applicazione utente invia quindi una richiesta di registrazione al servizio di autenticazione. Questo, a sua volta, comunica con un database degli utenti.
+
+Il servizio di autenticazione cerca nel database se l'indirizzo email fornito dall'utente è già presente. In caso negativo esso comunica all'applicazione utente che l'utente è stato registrato con successo, e l'applicazione utente restituisce una risposta positiva all'utente.
+
+Tuttavia, se l'indirizzo email è già presente nel database, il servizio di autenticazione informa l'applicazione utente che l'indirizzo email è già in uso, e l'applicazione utente restituisce una risposta negativa all'utente.
+
+In entrambi i casi, l'applicazione utente fornisce una risposta all'utente per comunicare l'esito della registrazione.
+
+Questa interazione è riassunta nel seguente diagramma di sequenza:
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/signup.png}
+    \caption{Diagramma delle sequenze per la registrazione di un utente}
+    \label{fig:signup}
+\end{figure}
+
+Login di un utente:\\
+L'utente inizia il processo di accesso (login) nell'applicazione. L'utente interagisce con l'applicazione utente e fornisce il proprio indirizzo email e la password per effettuare l'accesso.
+
+L'applicazione utente invia quindi una richiesta di accesso al Servizio di Autenticazione. Questo servizio comunica con un database degli utenti.
+
+Il Servizio di Autenticazione cerca nel database le credenziali fornite dall'utente per verificare se corrispondono a un account registrato. Se le credenziali sono corrette (caso di successo), il Servizio di Autenticazione comunica all'applicazione utente che l'utente è stato autenticato con successo, e l'applicazione utente restituisce una risposta positiva all'utente.
+
+Tuttavia, se le credenziali fornite non sono corrette (caso di fallimento), il Servizio di Autenticazione informa l'applicazione utente che l'indirizzo email o la password sono errati, e l'applicazione utente restituisce una risposta negativa all'utente.
+
+In entrambi i casi, l'applicazione utente fornisce una risposta all'utente per comunicare l'esito del tentativo di accesso.\\
+
+Questa interazione è riassunta nel seguente diagramma di sequenza:
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/login.png}
+    \caption{Diagramma delle sequenze per il login di un utente}
+    \label{fig:login}
+\end{figure}
+
+Visualizzazione dello stato di una stazione di ricarica:\\
+L'utente interagisce con l'applicazione utente e seleziona una stazione di ricarica.
+
+L'applicazione utente invia quindi una richiesta per ottenere informazioni sulla stazione di ricarica selezionata al Charging Station Service. Questo a sua volta comunica con il Provider.
+
+Il Provider cerca le informazioni sulla stazione di ricarica identificata dall'ID nella richiesta. Se la stazione di ricarica viene trovata (caso di successo), il Provider comunica al Service che ha avuto successo, e restituisce le informazioni trovate.
+
+Tuttavia, in caso di fallimento, il Provider comunica che non è riuscito a trovare la stazione di ricarica specificata.
+
+In base all'esito, il Charging Station Service comunica all'applicazione utente la risposta, che verrà quindi visualizzata all'utente dall'applicazione utente.
+
+Questa interazione è riassunta nel seguente diagramma di sequenza:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/ask-station.png}
+    \caption{Diagramma delle sequenze per la visualizzazione dello stato di una stazione di ricarica}
+    \label{fig:ask-station}
+\end{figure}
+
+
+\paragraph{Interazioni all'interno del Charging Station Domain}
+
 \subsection*{Design di Dettaglio}
-TODO: spiega le interazioni tra gli attori e componenti del sistema, con descrizione sia testuale che con diagrammi di sequenza.\\
+%TODO: spiega le interazioni tra gli attori e componenti del sistema, con descrizione sia testuale che con diagrammi di sequenza.
+La fase di Design di Dettaglio affronta la progettazione del sistema ad un livello di granularità più fine, siccome è in questa fase che ci si occupa di progettare i singoli componenti del sistema ed il loro protocollo di interazione.\\
+\subsubsection{User Domain - A}
+%TODO: spiegare le scelte di design principali della user app e dell'auth server con eventuali schemi
+
+\subsubsection{Charging Station Domain}
+Per quanto riguarda il dominio delle Charging Station, il gruppo ha deciso di utilizzare il paradigma ad \textbf{attori} per modellare il comportamento dei componenti del dominio e la
+metodologia di interazione tra essi. \\
+
+In questo paradigma, un attore è un'entità computazionale che può ricevere messaggi, elaborarli e rispondere con altri messaggi. Gli attori sono organizzati in gerarchie, dove ogni attore ha un solo attore padre e può avere più attori figli.\\
+Ogni attore possiede una \textbf{mailbox}, ovvero una coda di messaggi in entrata, e un \textbf{behavior}, ovvero un insieme di regole che definiscono il comportamento dell'attore alla ricezione di un messaggio.\\
+
+Dunque il Message Passing System definito nelle fasi precedenti è stato
+
+
 
 
 %Devono essere esposte le scelte progettuali operate nelle varie fasi di sviluppo dell'elaborato.\\

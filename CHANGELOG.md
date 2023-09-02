@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/angelacorte/smart-charging-station-report/compare/1.0.0...1.0.1) (2023-09-02)
+
+
+### Documentation
+
+* add more design choices ([aae7828](https://github.com/angelacorte/smart-charging-station-report/commit/aae782800c93244ad7a9258c373635ca88d84e90))
+
 ## 1.0.0 (2023-09-01)
 
 

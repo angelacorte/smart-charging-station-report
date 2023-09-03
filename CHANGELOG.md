@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/angelacorte/smart-charging-station-report/compare/1.7.0...1.7.1) (2023-09-03)
+
+
+### Documentation
+
+* add postman examples ([7381fc3](https://github.com/angelacorte/smart-charging-station-report/commit/7381fc32338f3f4df6303fb9a96456f849e7a8d4))
+
 ## [1.7.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.6.0...1.7.0) (2023-09-03)
 
 

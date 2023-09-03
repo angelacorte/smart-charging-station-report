@@ -1,3 +1,10 @@
+## [1.8.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.7.2...1.8.0) (2023-09-03)
+
+
+### Features
+
+* add charging staton test notes ([6b14f70](https://github.com/angelacorte/smart-charging-station-report/commit/6b14f705fc777d785ad0c7c4c5e1002f78706569))
+
 ## [1.7.2](https://github.com/angelacorte/smart-charging-station-report/compare/1.7.1...1.7.2) (2023-09-03)
 
 

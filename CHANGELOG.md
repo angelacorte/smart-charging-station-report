@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/angelacorte/smart-charging-station-report/compare/1.9.0...1.9.1) (2023-09-03)
+
+
+### Documentation
+
+* add half part of deployment section ([949cc42](https://github.com/angelacorte/smart-charging-station-report/commit/949cc42314d5a0b6c9b53d3bb4639b3bdf376db1))
+
 ## [1.9.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.8.0...1.9.0) (2023-09-03)
 
 

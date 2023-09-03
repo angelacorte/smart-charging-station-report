@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/angelacorte/smart-charging-station-report/compare/1.7.1...1.7.2) (2023-09-03)
+
+
+### Documentation
+
+* add future works for client app ([2b8912b](https://github.com/angelacorte/smart-charging-station-report/commit/2b8912b1ea34d933d67076e586243c539d7111f8))
+
 ## [1.7.1](https://github.com/angelacorte/smart-charging-station-report/compare/1.7.0...1.7.1) (2023-09-03)
 
 

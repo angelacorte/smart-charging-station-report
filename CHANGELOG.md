@@ -1,3 +1,10 @@
+## [1.9.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.8.0...1.9.0) (2023-09-03)
+
+
+### Features
+
+* add future work cluster-side ([6759450](https://github.com/angelacorte/smart-charging-station-report/commit/675945085e1e562d8aad04f45d17bd31bfd82006))
+
 ## [1.8.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.7.2...1.8.0) (2023-09-03)
 
 

@@ -1,3 +1,15 @@
+## [1.6.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.5.0...1.6.0) (2023-09-03)
+
+
+### Features
+
+* add last implementation details ([c4e5509](https://github.com/angelacorte/smart-charging-station-report/commit/c4e550931a900e2defa20275eee1c157dae95559))
+
+
+### Refactoring
+
+* remove subsection ([142453d](https://github.com/angelacorte/smart-charging-station-report/commit/142453d0be6005682d238137af602e41f14bd9fd))
+
 ## [1.5.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.4.0...1.5.0) (2023-09-03)
 
 

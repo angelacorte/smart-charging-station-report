@@ -1,3 +1,23 @@
+## [1.11.1](https://github.com/angelacorte/smart-charging-station-report/compare/1.11.0...1.11.1) (2023-09-03)
+
+
+### Style improvements
+
+* add space befor references ([4278cff](https://github.com/angelacorte/smart-charging-station-report/commit/4278cff8b2b59b07cd60a61ac8f321975692e033))
+
+
+### Documentation
+
+* add biblio refs to chapter 01 ([0e66fe9](https://github.com/angelacorte/smart-charging-station-report/commit/0e66fe9aecf648baac58a2e03bdd7eed310d28dc))
+* add biblio refs to chapter 02 ([b9ae346](https://github.com/angelacorte/smart-charging-station-report/commit/b9ae3460b6ac1a1980b5a51c0054ab80dbb87e71))
+* add biblio to chapter 03 ([dcb3dc4](https://github.com/angelacorte/smart-charging-station-report/commit/dcb3dc4e7d7603817730e9576fb3898d112b83ed))
+* add biblio to chapter 05 ([2ed3fab](https://github.com/angelacorte/smart-charging-station-report/commit/2ed3fabec06a26b87b7fd3eee94d20827c61fd4c))
+* add biblio to chapter 06 ([ad06fd2](https://github.com/angelacorte/smart-charging-station-report/commit/ad06fd2e5695c1196d61a359dc6d0c7ba8d63160))
+* add biblio to chapter 7 ([6dbc825](https://github.com/angelacorte/smart-charging-station-report/commit/6dbc825b094b2da78be2eb23c8b1e916ecd35fac))
+* add bibliography ([02f0402](https://github.com/angelacorte/smart-charging-station-report/commit/02f0402b7e173521e434787d4479cda3bc5267cf))
+* add references to chapter 04 ([b204511](https://github.com/angelacorte/smart-charging-station-report/commit/b20451107d3e5d4e20f2606f539e4fba72dd1172))
+* biblio refs ([8364aad](https://github.com/angelacorte/smart-charging-station-report/commit/8364aada83261e57e216f322b5b8f74836eb95be))
+
 ## [1.11.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.10.0...1.11.0) (2023-09-03)
 
 

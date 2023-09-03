@@ -1,3 +1,17 @@
+## [1.7.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.6.0...1.7.0) (2023-09-03)
+
+
+### Features
+
+* upload images ([5e75530](https://github.com/angelacorte/smart-charging-station-report/commit/5e7553029d990598953b1677e88b090af03dd242))
+
+
+### Documentation
+
+* add intro to testing ([7e71a92](https://github.com/angelacorte/smart-charging-station-report/commit/7e71a92b4287c4a66f3f43d0bcc75d03d8cafdc2))
+* add subsectiont title ([f3702c5](https://github.com/angelacorte/smart-charging-station-report/commit/f3702c5fc6d16fa14500e9e987cd53a7fd390457))
+* add user domain to design ([0f3cf29](https://github.com/angelacorte/smart-charging-station-report/commit/0f3cf29b9a3eadf770342ff22b0d19d180ea9714))
+
 ## [1.6.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.5.0...1.6.0) (2023-09-03)
 
 

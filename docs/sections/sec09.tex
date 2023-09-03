@@ -52,4 +52,12 @@ Per quanto riguardan l'applicazione lato client, possono essere identificati i s
     \item Integrazione con app dedicate alla navigazione, per gestire itinerari che includono soste per la ricarica.
 \end{itemize}
 
+Invece, per quanto riguarda il lato "cluster" del sistema, il gruppo ha identificato i seguenti possibili sviluppi futuri:
+
+\begin{itemize}
+    \item Esplorazione di una soluzione per includere l'applicativo client all'interno del cluster akka, in modo da farla comunicare in maniera peer-to-peer con le stazioni di ricarica;
+    \item Esposizione all'esterno delle Charging Stations attraverso Akka Stream ed il protocollo WebSocket, per permettere ai client web di osservare lo stato delle stazioni in tempo reale;
+    \item Generalizzazione dell'architettura per supportare altri tipi di dispositivi in ambito smart city;
+\end{itemize}
+
 \newpage

@@ -1,3 +1,15 @@
+## [1.11.2](https://github.com/angelacorte/smart-charging-station-report/compare/1.11.1...1.11.2) (2023-09-03)
+
+
+### Bug Fixes
+
+* go to new page so that the code is not split ([eb8c6ef](https://github.com/angelacorte/smart-charging-station-report/commit/eb8c6efc5462ce486caeaf5b74e96f40612b9a2a))
+
+
+### Refactoring
+
+* refactor conclusioni ([6523ab6](https://github.com/angelacorte/smart-charging-station-report/commit/6523ab6992f7bac0d7f56fe5412a7f3620684051))
+
 ## [1.11.1](https://github.com/angelacorte/smart-charging-station-report/compare/1.11.0...1.11.1) (2023-09-03)
 
 

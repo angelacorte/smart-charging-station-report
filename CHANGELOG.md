@@ -1,3 +1,10 @@
+## [1.11.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.10.0...1.11.0) (2023-09-03)
+
+
+### Features
+
+* add performance notes ([b878c6e](https://github.com/angelacorte/smart-charging-station-report/commit/b878c6e796806cc00141b6726edef78be50c60d4))
+
 ## [1.10.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.9.1...1.10.0) (2023-09-03)
 
 

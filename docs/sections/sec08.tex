@@ -5,22 +5,36 @@
 
 \section{Piano di lavoro}
 È stata concordata l'adozione di un approccio allo sviluppo ispirato alle
-metodologie agili, con sprint settimanali. Gli sprint settimanali sono stati pianificati in incontri di sprint planning, durante i quali veniva definito il lavoro da svolgere per la settimana successiva. Questo lavoro veniva equamente suddiviso tra i membri del team, tenendo conto delle competenze e delle risorse disponibili.
+metodologie agili \cite{agile}, con sprint settimanali. Gli sprint settimanali sono stati pianificati in
+incontri di sprint planning, durante i quali veniva definito il lavoro da svolgere per la
+settimana successiva. Questo lavoro veniva equamente suddiviso tra i membri del team, tenendo
+conto delle competenze e delle risorse disponibili.\\
 
 
 A questi incontri sono state aggiunte retrospettive
 per ogni sprint per fare il punto sullo stato di completamento del lavoro pianificato.\\
 
-Inizialmente, è stato condotto uno studio approfondito sulle tecnologie disponibili e sullo stato attuale delle conoscenze nel settore. Questo studio ha permesso di prendere decisioni informate sulla scelta delle tecnologie da utilizzare e di adottare le metodologie più avanzate e adatte al contesto di sviluppo.\\
+Inizialmente, è stato condotto uno studio approfondito sulle tecnologie disponibili e sullo
+stato attuale delle conoscenze nel settore. Questo studio ha permesso di prendere decisioni
+informate sulla scelta delle tecnologie da utilizzare e di adottare le metodologie più avanzate
+e adatte al contesto di sviluppo.\\
 
 In seguito, è stato pianificato il lavoro da svolgere per ogni sprint, tenendo conto
 delle risorse disponibili e delle priorità.\\
 
 
 \subsection{Metodologia adottata}
-Un elemento chiave di questa metodologia è stata l'aggiunta delle retrospettive alla fine di ogni sprint. Queste retrospettive hanno permesso al team di fare il punto sullo stato di completamento del lavoro pianificato e di identificare eventuali aree di miglioramento. Questo ciclo di feedback continuo ha contribuito a ottimizzare il processo di sviluppo e a garantire una progressiva evoluzione del progetto.
+Un elemento chiave di questa metodologia è stata l'aggiunta delle retrospettive alla fine di ogni sprint.
+Queste retrospettive hanno permesso al team di fare il punto sullo stato di completamento del lavoro
+pianificato e di identificare eventuali aree di miglioramento.\\
 
-L'adozione di un approccio agile con sprint settimanali ha consentito al team di sviluppo di mantenere un alto grado di flessibilità, di adattarsi rapidamente ai cambiamenti e di garantire una progressiva evoluzione del progetto, il tutto basato su uno studio approfondito delle tecnologie e delle metodologie disponibili.
+Questo ciclo di feedback continuo ha contribuito a ottimizzare il processo di sviluppo e a
+garantire una progressiva evoluzione del progetto.\\
+
+L'adozione di un approccio agile con sprint settimanali ha consentito al team di sviluppo
+di mantenere un alto grado di flessibilità, di adattarsi rapidamente ai cambiamenti e di
+garantire una progressiva evoluzione del progetto, il tutto basato su uno studio approfondito
+delle tecnologie e delle metodologie disponibili.
 
 \subsubsection{Sprints}
 
@@ -61,13 +75,23 @@ L'adozione di un approccio agile con sprint settimanali ha consentito al team di
 \end{itemize}
 
 \subsection{DevOps}
-Per quanto riguarda il processo di sviluppo, il gruppo ha adottato alcune tecniche di DevOps per migliorare la qualità del software e la produttività del team.\\
-La prima scelta fatta è stata la suddivisione del progetto in varie repositories indipendenti. Ciascuna di queste repository è stata gestita secondo le seguenti modalità:
+Per quanto riguarda il processo di sviluppo, il gruppo ha adottato alcune tecniche di DevOps
+per migliorare la qualità del software e la produttività del team.\\
+
+La prima scelta fatta è stata la suddivisione del progetto in varie repositories indipendenti.
+Ciascuna di queste repository è stata gestita secondo le seguenti modalità:
 
 \begin{itemize}
-    \item \textbf{Branching model}: è stato adottato un branching model ispirato al GitFlow, con un branch main per il codice in produzione e vari feature branch per lo sviluppo di nuove funzionalità. Questo approccio ha permesso di mantenere un alto grado di flessibilità e di adattarsi rapidamente ai cambiamenti.
-    \item \textbf{Pull request}: ogni modifica al codice è stata effettuata tramite pull request. Questo approccio ha permesso di proteggere al meglio il main branch da modifiche non testate e di sfruttare al meglio la Continuous Integration.
-    \item \textbf{Continuous Integration}: è stato configurato un sistema di Continuous Integration per ogni repository grazie al meccanismo delle Github Actions. In particolare è stato creato un workflow che eseguiva il setup di vari ambienti di esecuzione e che eseguiva i test specificati.
+    \item \textbf{Branching model}: è stato adottato un branching model ispirato al GitFlow \cite{gitflow},
+          con un branch main per il codice in produzione e vari feature branch per lo sviluppo di nuove
+          funzionalità. Questo approccio ha permesso di mantenere un alto grado di flessibilità e di adattarsi
+          rapidamente ai cambiamenti.
+    \item \textbf{Pull request}: ogni modifica al codice è stata effettuata tramite pull request.
+          Questo approccio ha permesso di proteggere al meglio il main branch da modifiche non testate e
+          di sfruttare al meglio la Continuous Integration.
+    \item \textbf{Continuous Integration}: è stato configurato un sistema di Continuous Integration
+          per ogni repository grazie al meccanismo delle Github Actions. In particolare è stato creato
+          un workflow che eseguiva il setup di vari ambienti di esecuzione e che eseguiva i test specificati.
 \end{itemize}
 
 

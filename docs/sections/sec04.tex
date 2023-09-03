@@ -171,19 +171,52 @@ Nel caso in cui la stazione di ricarica non venga trovata (caso "not found"), il
 
 Questa interazione è riassunta nel seguente diagramma di sequenza:
 
-\begin{figure}[htbp]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=\textwidth]{images/charge.png}
     \caption{Diagramma delle sequenze per la richiesta di ricarica di un veicolo}
     \label{fig:charge}
 \end{figure}
-
+\clearpage
 
 \subsection{Design di Dettaglio}
 %TODO: spiega le interazioni tra gli attori e componenti del sistema, con descrizione sia testuale che con diagrammi di sequenza.
 La fase di Design di Dettaglio affronta la progettazione del sistema ad un livello di granularità più fine, siccome è in questa fase che ci si occupa di progettare i singoli componenti del sistema ed il loro protocollo di interazione.\\
-\subsubsection{User Domain - A}
+
+\subsubsection{User Domain}
 %TODO: spiegare le scelte di design principali della user app e dell'auth server con eventuali schemi
+
+L'applicazione web lato client si occupa di fornire all'utente le informazioni raccolte dal server
+e gestire l'ottenimento di dati da sensori quali GPS e fotocamera.\\
+
+Per prima cosa, l'applicazione fornisce all'utente le funzionalità di registrazione e login,
+che concederà all'utente una migliore esperienza di utilizzo, dando anche la possibilità di
+memorizzare le colonnine di interesse, salvate all'interno del database.\\
+
+Successivamente al login, l'utente verrà indirizzato sulla sua home page, dalla quale avrà la possibilità
+di visionare le proprie colonnine d'interesse, un link diretto alla mappa delle colonnine ed uno
+alla scansione del codice QR. Se presenti, dalle colonnine d'interesse sarà possibile accedere
+direttamente alla pagina di prenotazione della colonnina.\\
+
+La mappa delle colonnine è una pagina che mostra all'utente la posizione di tutte le colonnine ed il loro stato attuale,
+nel momento in cui accede alla pagina, gli verrà chiesto di utilizzare la propria posizione,
+se acconsente vedrà la sua posizione sulla mappa e le colonnine più vicine ad essa.\\
+
+La scansione del codice QR permette all'utente di accedere alla pagina di caricamento presso la colonnina,
+questo è l'unico modo in cui la colonnina può cambiare il suo stato in "caricamento", siccome si suppone che
+presso ogni colonnina sia fisicamente presente un codice QR che la identifica univocamente.\\
+
+Nel momento in cui l'utente fa una richiesta di prenotazione o caricamento, verrà contattato il server Akka,
+che in base allo stato e disponibilità della colonnina, risponderà di conseguenza all'utente.\\
+
+Sono state definite chiaramente le interfacce di comunicazione tra i vari componenti dell'User Domain,
+assicurando una fluida trasmissione dei dati e dei messaggi tra l'app, l'auth server, il server akka ed il database.
+Questo approccio dettagliato alla progettazione ha permesso di garantire un'interazione sicura e
+affidabile tra gli utenti e il sistema.\\
+
+Nel complesso, il design di dettaglio dell'User Domain è stato realizzato con l'obiettivo di offrire
+un'interfaccia utente intuitiva e una gestione dell'autenticazione robusta, garantendo al contempo
+la sicurezza e l'efficienza del sistema nel suo complesso.
 
 \subsubsection{Charging Station Domain}
 Per quanto riguarda il dominio delle Charging Station, il gruppo ha deciso di utilizzare il paradigma ad \textbf{attori} per modellare il comportamento dei componenti del dominio e la

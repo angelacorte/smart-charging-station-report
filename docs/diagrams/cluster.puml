@@ -1,0 +1,16 @@
+@startuml cluster
+participant ChargingStationActor as CSA
+participant Receptionist as R
+participant ChargingStationProvider as CSP
+
+CSP -> R : subscribe(ChargingStationServiceKey)
+CSA -> R : register(ChargingStationServiceKey)
+R -> CSP : ChargingStationServiceKey.Listing(refs)
+
+alt Actor disconnects from cluster
+ CSA --> R
+ destroy CSA
+ R -> CSP : ChargingStationServiceKey.Listing(refs)
+end
+
+@enduml

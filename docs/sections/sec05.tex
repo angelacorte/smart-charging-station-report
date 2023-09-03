@@ -108,10 +108,40 @@ object ChargingStationProvider:
 \end{lstlisting}
 
 \subsubsection{Creazione di un cluster di attori}
+Nella visione classica di Akka, uno o più attori eseguono concorrentemente all'interno dello stesso \textbf{Actor System}.
+L'Actor System è un'astrazione che rappresenta un ambiente di esecuzione per tutti gli attori. In particolare, è responsabile di allocare le risorse necessarie per l'esecuzione degli attori, come ad esempio i thread.
+L'Actor System è dunque una struttura molto pesante e costosa in termini computazionali, e dovrebbe esistere un solo Actor System per applicazione.
+Esso rappresenta dunque uno o più attori che comunicano tra loro ed eseguono concorrentemente all'interno di un unico processo e, quindi, dispositivo fisico.
+Come si può facilmente intuire, questa visione di Akka non è adatta per la realizzazione di un sistema distribuito, poichè non permette di eseguire attori di uno stesso Actor System su dispositivi fisici diversi. È necessario dunque
+riuscire ad eseguire ogni attore logicamente indipendente in un proprio Actor System, e far comunicare tra loro gli attori di diversi Actor System.\\
+A tal scopo, Akka fornisce il modulo \textbf{Akka Cluster}, che permette di creare un cluster di Actor Systems che comunicano tra loro attraverso la rete.
+Dal punto di vista dello sviluppatore, questo modulo è estremamente potente, poichè permette, con minima aggiunta di codice, di creare un cluster di attori che comunicano tra loro anche se appartenenti a dispositivi fisici diversi.
+Uno degli elementi chiave dell'api di Akka cluster è il \textbf{Receptionist}, che è responsabile di registrare gli attori all'interno del cluster e di fornire un riferimento ad essi.
+Un attore dunque partecipa al cluster esponendo una \textbf{ServiceKey}, che utilizza per registrarsi al cluster tramite Receptionist. Una volta registrato, l'attore può essere scoperto dagli attori che si registrano alla sua ServiceKey sempre tramite Receptionist.\\
+Il Receptionist, al momento della registrazione di un nuovo attore tramite ServiceKey, notifica tutti gli attori sottoscritti a quella ServiceKey con il nuovo set di attori registrati.
+Questo comportamento è riassunto nel seguente diagramma di sequenza:\\
 
-\subsubsection*{Serializzazione intra cluster}
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{images/cluster.png}
+      \caption{Diagramma di sequenza che mostra il comportamento del Receptionist}
+\end{figure}
 
-\subsubsection*{Marshalling e Unmarshalling}
+\subsubsection{Serializzazione intra cluster}
+Per permettere la comunicazione tra attori di diversi Actor System, è necessario che i messaggi scambiati tra di essi siano serializzabili. Per raggiungere questo scopo abbiamo adottato la libreria
+\textbf{akka-serialization-jackson}, che permette di serializzare oggetti in vari formati definendo dei \textbf{SerializationBindings}. In questo caso abbiamo utilizzato jackson-cbor.
+
+\subsubsection{Esposizione di un servizio REST}
+Per esporre un servizion REST basato sul protocollo HTTP, abbiamo utilizzato il modulo \textbf{Akka HTTP}, che permette di creare un server HTTP in modo semplice e conciso.\\
+In particolare, l'attore Charging Station Service all'interno del suo setup esegue le seguenti operazioni:
+\begin{itemize}
+      \item Definisce le routes ed i rispettivi handlers attraverso il DSL \textbf{Server Directives} di Akka HTTP.
+      \item Esegue il binding del server HTTP ad un indirizzo IP e porta specificati.
+      \item Restituisce un Behavior che risponde ad un messaggio di Stop, causando l'unbinding del server HTTP e la terminazione del servizio e dell'attore stesso.
+\end{itemize}
+
+\subsubsection{Marshalling ed Unmarshalling}
+Per la conversione dei bodies delle richieste HTTP in oggetti Scala e viceversa, abbiamo utilizzato il modulo \textbf{Spray Json}, che permette di definire dei \textbf{RootJsonFormat} per i tipi di dato del modello per i quali vogliamo che vengano eseguiti Marshalling ed Unmarshalling automatici.\\
 
 \subsection{Tecnologie impiegate}
 
@@ -177,7 +207,8 @@ di un database relazionale sono state le seguenti:
             JavaScript, fornendo coerenza tra il modello dati del backend e quello del frontend.
 \end{itemize}
 
-\subsubsection{Akka HTTP}
+\subsubsection{Akka}
+
 
 
 

@@ -1,3 +1,11 @@
+## [1.10.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.9.1...1.10.0) (2023-09-03)
+
+
+### Features
+
+* add deployment notes ([452be08](https://github.com/angelacorte/smart-charging-station-report/commit/452be084d8210f41fc9eead5ef6971723a4566f6))
+* add devops ([615c2ef](https://github.com/angelacorte/smart-charging-station-report/commit/615c2ef4edbb6bdac49b145fef54fb89b7f5ef17))
+
 ## [1.9.1](https://github.com/angelacorte/smart-charging-station-report/compare/1.9.0...1.9.1) (2023-09-03)
 
 

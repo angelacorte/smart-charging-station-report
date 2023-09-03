@@ -17,8 +17,6 @@ In seguito, è stato pianificato il lavoro da svolgere per ogni sprint, tenendo 
 delle risorse disponibili e delle priorità.\\
 
 
-
-
 \subsection{Metodologia adottata}
 Un elemento chiave di questa metodologia è stata l'aggiunta delle retrospettive alla fine di ogni sprint. Queste retrospettive hanno permesso al team di fare il punto sullo stato di completamento del lavoro pianificato e di identificare eventuali aree di miglioramento. Questo ciclo di feedback continuo ha contribuito a ottimizzare il processo di sviluppo e a garantire una progressiva evoluzione del progetto.
 
@@ -60,6 +58,16 @@ L'adozione di un approccio agile con sprint settimanali ha consentito al team di
               \item Implementazione dei servizi di autenticazione (Cortecchia - 1 giorno uomo)
               \item Implementazione Akka HTTP per la comunicazione con webapp (Micelli - 3 giorni uomo)
           \end{itemize}
+\end{itemize}
+
+\subsection{DevOps}
+Per quanto riguarda il processo di sviluppo, il gruppo ha adottato alcune tecniche di DevOps per migliorare la qualità del software e la produttività del team.\\
+La prima scelta fatta è stata la suddivisione del progetto in varie repositories indipendenti. Ciascuna di queste repository è stata gestita secondo le seguenti modalità:
+
+\begin{itemize}
+    \item \textbf{Branching model}: è stato adottato un branching model ispirato al GitFlow, con un branch main per il codice in produzione e vari feature branch per lo sviluppo di nuove funzionalità. Questo approccio ha permesso di mantenere un alto grado di flessibilità e di adattarsi rapidamente ai cambiamenti.
+    \item \textbf{Pull request}: ogni modifica al codice è stata effettuata tramite pull request. Questo approccio ha permesso di proteggere al meglio il main branch da modifiche non testate e di sfruttare al meglio la Continuous Integration.
+    \item \textbf{Continuous Integration}: è stato configurato un sistema di Continuous Integration per ogni repository grazie al meccanismo delle Github Actions. In particolare è stato creato un workflow che eseguiva il setup di vari ambienti di esecuzione e che eseguiva i test specificati.
 \end{itemize}
 
 

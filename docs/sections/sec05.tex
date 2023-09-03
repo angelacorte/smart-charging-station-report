@@ -6,7 +6,7 @@
 \section{Implementazione}\label{sec:implementazione}
 
 
-\subsection{User App}
+\subsection{User Domain}
 
 Per quanto riguarda l'implementazione dell'applicazione con cui si interfaccia l'utente, è stato deciso di utilizzare il framework Svelte. Questa scelta è stata dettata da un'approfondita analisi delle opzioni disponibili e da diverse considerazioni chiave che hanno guidato questa decisione.
 
@@ -47,13 +47,73 @@ In secondo luogo, MongoDB è noto per la sua scalabilità orizzontale. Questa ca
 Infine, MongoDB si è dimostrato un'ottima scelta per accelerare lo sviluppo. La sua capacità di memorizzare e recuperare dati in un formato JSON-like si integra perfettamente con il mondo JavaScript, garantendo coerenza tra il modello dati del backend e quello del frontend.
 
 
-\subsection{Cluster}
-\subsubsection{Actor Model}
-\subsubsection{Akka Cluster}
-\subsubsection{Akka HTTP}
+\subsection{Charging Station Domain}
+Per quanto riguarda l'implementazione delle componenti del Charging Station Domain, vista la scelta fatta di progettare i sotto-componenti del dominio attraverso il modello ad attori, la scelta su come implementarli è
+ricaduta sul framework Akka. Akka è un toolkit open-source per la creazione di applicazioni concorrenti e distribuite basate sul modello ad attori. Il framework è scritto in Scala, ma è possibile utilizzarlo anche con Java, tuttavia in questa sede
+si è preferito utilizzare il linguaggio Scala poichè più flessibile, conciso e potente della controparte Java, oltre al fatto che offre un'esperienza di sviluppo migliore col framework Akka.\\
+In particolare, è stata scelta l'api \textbf{Akka Typed}, che permette di definire gli attori attraverso un sistema di tipi, rendendo più semplice la gestione degli stessi.\\
 
+Gli attori implementati in Akka sono stati i seguenti:
+\begin{itemize}
+      \item Charging Station Actor
+      \item Charging Station Provider
+      \item Charging Station Service
+\end{itemize}
 
-\subsection{Tecnologie impiegate - A}
+Per ognuno di essi, l'implementazione ha seguito il seguente schema:\\
+
+\paragraph{Definizione dei messaggi scambiati tra gli attori:}
+in Akka Typed, l'attore è rappresentato dal concetto di \textbf{Behavior<T>}, che è un'astrazione che rappresenta il ciclo di vita di un attore. In particolare, un Behavior è un'interfaccia funzionale che prende in input un messaggio di tipo T e restituisce un nuovo Behavior.\\
+Il primo passo è stato dunque quello di definire i messaggi scambiati tra gli attori, ovvero i tipi T.\\
+Per prima cosa, per ogni attore è stato definito un sealed trait base \textbf{Request} da estendere per ogni diverso messaggio che l'attore può ricevere.\\
+Dopodichè, con l'aiuto degli schemi fatti in fase di progettazione, sono state create, per ogni attore, diverse case classes le quali estendono Request e rappresentano i diversi messaggi specifici che l'attore può ricevere.\\
+Segue un esempio di definizione dei messaggi per l'attore Charging Station Actor:
+\begin{lstlisting}[language=scala]
+object ChargingStationEvents:
+      sealed trait Request
+      case class AskState(replyTo: ActorRef[ChargingStationProvider.Request]) extends Request
+      case class Charge(request: ChargeRequest, replyTo: ActorRef[ChargeRequestResult]) extends Request
+      case class Reserve(reservation: Reservation, replyTo: ActorRef[ReservationResult]) extends Request
+      case class StopCharge() extends Request
+\end{lstlisting}
+
+\paragraph{Definizione delle reazioni ai messaggi:}
+Come anticipato, il Behavior<T> è un'interfaccia funzionale che prende in input un messaggio di tipo T e restituisce un nuovo Behavior.\\
+Dunque, per completare l'implementazione di un attore è necessario fornire un implementazione coerente di Behavior<T>. A tale scopo, Akka fornisce svariate funzioni di factory racchiuse nell'object \textbf{Behaviors}, che permettono di creare Behavior<T> in modo semplice e conciso.\\
+A seconda della complessità dell'attore da implementare, sono state utilizzate le seguenti funzioni di factory:
+\begin{itemize}
+      \item \textbf{Behaviors.receive:} questa funzione permette di creare un Behavior<T> che reagisce a un messaggio di tipo T. In particolare, prende in input una funzione che prende in input il messaggio di tipo T e l'\textbf{Actor Context} e restituisce un Behavior<T>.\\
+            L'Actor Context è un elemento chiave del framework Akka, poichè permette all'attore di manipolare od ottenere informazioni circa il suo contesto di esecuzione. Questo oggetto è necessario laddove un attore debba spawnare un attore figlio, accedere al proprio riferimento univoco, o utilizzare funzionalità di logging.\\
+            Questa factory è stata utilizzata per implementare Charging Station Actor e Charging Station Provider.
+      \item \textbf{Behaviors.receiveMessage:} questa funzione permette di creare un Behavior<T> che reagisce a un messaggio di tipo T. In particolare, prende in input una funzione che prende in input il messaggio di tipo T e restituisce un Behavior<T>.\\
+            È una versione più concisa della receive classica poichè non necessita dell'Actor Context. Questa factory è stata utilizzata per implementare Charging Station Service.
+      \item \textbf{Behaviors.setup:} questa funzione non reagisce a nessun messaggio, ma permette di eseguire del codice una volta che l'attore è stato spawnato. In particolare, prende in input una funzione che prende in input l'Actor Context e restituisce un Behavior<T>.\\
+            Questa factory è stata utilizzata per implementare Charging Station Actor e Charging Station Provider.	
+\end{itemize}
+
+Di seguito un esempio semplificato di implementazione di un attore utilizzando Behaviors.setup e Behaviors.receive:\\
+
+\begin{lstlisting}[language=scala]
+object ChargingStationProvider:
+      def apply(): Behavior[ChargingStationProvider.Request] = 
+            Behaviors setup { context =>
+                  // esegui operazioni preliminari dipendenti dall'Actor Context
+                  running() // separiamo il codice del setup da eseguire una sola volta con il codice effettivo del Behavior
+            }
+      private def running(): Behavior[ChargingStationProvider.Request] = 
+            Behaviors receive { (context, message) =>
+                  // reagisci al messaggio
+                  running() // ritorna ricorsivamente questo Behavior
+            }
+\end{lstlisting}
+
+\subsubsection{Creazione di un cluster di attori}
+
+\subsubsection*{Serializzazione intra cluster}
+
+\subsubsection*{Marshalling e Unmarshalling}
+
+\subsection{Tecnologie impiegate}
 
 In questa sezione, verranno presentate in dettaglio le principali tecnologie utilizzate per implementare il sistema e le motivazioni che ci hanno spinto a sceglierle.
 
@@ -117,16 +177,7 @@ di un database relazionale sono state le seguenti:
             JavaScript, fornendo coerenza tra il modello dati del backend e quello del frontend.
 \end{itemize}
 
-\subsubsection{Akka server}
-
-
-
-Considerazioni che hanno guidato la scelta della tecnologia:
-\begin{itemize}
-      \item Il sistema è distribuito: vari componenti software, detti nodi, collocati su macchine diverse comunicano tra di loro attraverso una rete e realizzano un comportamento.
-      \item Il sistema deve essere scalabile: deve essere semplice aggiungere e rimuovere nodi dal sistema.
-      \item Il sistema deve essere robusto: deve essere in grado di tollerare guasti e malfunzionamenti di alcuni nodi.
-\end{itemize}
+\subsubsection{Akka HTTP}
 
 
 

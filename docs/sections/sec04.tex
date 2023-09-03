@@ -62,7 +62,7 @@ dai Charging Station Actors di eventuali cambiamenti di stato, sia interrogato d
 per ottenere informazioni sullo stato delle Charging Station attraverso l'API REST esposta dal
 Charging Station Service.\\
 
-L'architettura complessiva del sistema è dunque riassunta nel seguente diagramma\ref{fig:architecture}:
+L'architettura complessiva del sistema è dunque riassunta nel seguente diagramma \ref{fig:architecture}:
 
 \begin{figure}[htbp]
     \centering
@@ -94,7 +94,7 @@ risposta negativa all'utente.
 In entrambi i casi, l'applicazione utente fornisce una risposta all'utente per comunicare l'esito
 della registrazione.\\
 
-Questa interazione è riassunta nel seguente diagramma di sequenza\ref{fig:signup}:
+Questa interazione è riassunta nel seguente diagramma di sequenza \ref{fig:signup}:
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{images/signup.png}
@@ -122,7 +122,7 @@ l'applicazione utente restituisce una risposta negativa all'utente.
 In entrambi i casi, l'applicazione utente fornisce una risposta all'utente per comunicare
 l'esito del tentativo di accesso.\\
 
-Questa interazione è riassunta nel seguente diagramma di sequenza\ref{fig:login}:
+Questa interazione è riassunta nel seguente diagramma di sequenza \ref{fig:login}:
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{images/login.png}
@@ -146,7 +146,7 @@ ricarica specificata.
 In base all'esito, il Charging Station Service comunica all'applicazione utente la risposta,
 che verrà quindi visualizzata all'utente dall'applicazione utente.
 
-Questa interazione è riassunta nel seguente diagramma di sequenza\ref{fig:ask-station}:
+Questa interazione è riassunta nel seguente diagramma di sequenza \ref{fig:ask-station}:
 
 \begin{figure}[htbp]
     \centering
@@ -167,7 +167,7 @@ restituisce l'elenco completo delle stazioni di ricarica al Charging Station Ser
 Quest'ultimo, a sua volta, restituisce l'elenco delle stazioni di ricarica all'applicazione
 utente. Infine, quest'ultima mostra le stazioni di ricarica all'interno della mappa all'utente.\\
 
-Questa interazione è riassunta nel seguente diagramma di sequenza\ref{fig:ask-all-stations}:
+Questa interazione è riassunta nel seguente diagramma di sequenza \ref{fig:ask-all-stations}:
 
 \begin{figure}[htbp]
     \centering
@@ -201,7 +201,7 @@ comunica all'applicazione utente l'esito negativo della prenotazione.\\
 Nel caso in cui la stazione di ricarica non venga trovata, il Provider lo comunica al Service,
 che comunica quindi all'applicazione utente che la stazione di ricarica selezionata non è disponibile.\\
 
-Questa interazione è riassunta nel seguente diagramma di sequenza\ref{fig:reserve-station}:
+Questa interazione è riassunta nel seguente diagramma di sequenza \ref{fig:reserve-station}:
 
 \begin{figure}[htbp]
     \centering
@@ -242,7 +242,7 @@ comunica al Servizio Stazioni di Ricarica che la stazione non è stata trovata.
 Il Servizio Stazioni di Ricarica comunica quindi all'applicazione utente che la stazione di
 ricarica selezionata non è disponibile.\\
 
-Questa interazione è riassunta nel seguente diagramma di sequenza\ref{fig:charge}:
+Questa interazione è riassunta nel seguente diagramma di sequenza \ref{fig:charge}:
 
 \begin{figure}[!htbp]
     \centering
@@ -318,7 +318,7 @@ che possono trovarsi in uno dei seguenti stati:
     \item \textbf{Charging}: la stazione è attualmente in uso per la ricarica.
 \end{itemize}
 
-La macchina a stati finiti per il Charging Station Actor è riassunta nel seguente diagramma\ref{fig:cs-statexs}:
+La macchina a stati finiti per il Charging Station Actor è riassunta nel seguente diagramma \ref{fig:cs-state}:
 
 \begin{figure}[htbp]
     \centering

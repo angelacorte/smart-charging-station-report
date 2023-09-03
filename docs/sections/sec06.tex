@@ -3,6 +3,49 @@
 %----------------------------------------------------------------------------------------
 
 \section{Testing e performance}
+%intro + scalatest + server express w/postman
+
+Il testing è un processo fondamentale nello sviluppo del software che mira a verificare se un'applicazione
+funziona correttamente e soddisfa i requisiti specificati. Serve a individuare e correggere eventuali
+errori o difetti nel codice, garantendo che il software sia affidabile, stabile e conforme alle aspettative degli utenti.
+
+L'importanza di testing e performance engineering risiede nella garanzia della qualità del software.
+Il testing assicura che il software sia privo di bug e funzioni correttamente, migliorando la fiducia
+degli utenti e riducendo i costi legati a eventuali correzioni post-lancio. Le prestazioni,
+d'altra parte, influenzano direttamente l'esperienza utente e la soddisfazione del cliente.
+Un'applicazione lenta o instabile può respingere gli utenti.
+
+\subsection{Scalatest}
+ScalaTest è un framework di testing per il linguaggio di programmazione Scala.
+È stato progettato per consentire una varietà di stili di testing, tra cui il testing unitario,
+il testing di integrazione e il testing di accettazione.\\
+
+All'interno del progetto, ScalaTest è stato utilizzato principalmente per il testing
+unitario delle varie componenti del software lato Scala. Questo framework ha permesso agli
+sviluppatori di scrivere test che verificano il comportamento delle singole unità di codice,
+come classi e metodi, in isolamento. In questo modo, è stato possibile identificare e risolvere
+eventuali bug o problemi nelle componenti del software in una fase precoce dello sviluppo.
+
+\subsection{Client}
+Testare un'applicazione web, specialmente con un framework come Svelte, può essere
+impegnativo per diverse ragioni. Queste includono la complessità dei componenti,
+l'uso di flussi di dati reattivi, la manipolazione del DOM, l'integrazione con servizi
+esterni, la reattività dell'interfaccia utente su dispositivi diversi e il testing end-to-end.
+Inoltre, gli aggiornamenti del framework richiedono test aggiuntivi per garantire la compatibilità.
+In breve, il testing è cruciale per assicurare l'affidabilità di un'applicazione web, ma può essere
+complesso a causa delle sfide uniche presentate dall'ambiente web e dall'architettura reattiva di Svelte.
+
+\subsection{Postman}
+Postman è stato utilizzato per effettuare vari test di integrazione, simulando le richieste
+HTTP inviate dal client alle web API. Questo strumento ha permesso di verificare il corretto
+funzionamento dei servizi REST e di identificare eventuali errori o problemi di comunicazione
+tra il client e il server.\\
+
+Sono state testate richieste sia nei confronti del server express che nei confronti del server
+Akka HTTP. In particolare, sono state testate le richieste di login, di registrazione,
+di visualizzazione delle colonnine e richieste di prenotazione o ricarica.\\
+
+
 
 \subsection{Charging Station Domain}
 \subsubsection{Unit Testing}
@@ -19,12 +62,12 @@ Vincoli circa la lunghezza della sezione (escluse didascalie, tabelle, testo nel
 
 \vspace{1cm}
 \begin{tabular}{l|rr}
- & Numero minimo di battute & Numero massimo di battute \\
- \hline
- 1 componente & 2000 & 3000 \\
- 2 componenti & 2500 & 4500 \\
- 3 componenti & 3000 & 6000 \\
- \hline
+                 & Numero minimo di battute & Numero massimo di battute \\
+    \hline
+    1 componente & 2000                     & 3000                      \\
+    2 componenti & 2500                     & 4500                      \\
+    3 componenti & 3000                     & 6000                      \\
+    \hline
 \end{tabular}
 
 

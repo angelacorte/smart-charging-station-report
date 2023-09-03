@@ -3,8 +3,8 @@
 %----------------------------------------------------------------------------------------
 
 \section{Testing e performance}
-%intro + scalatest + server express w/postman
 
+\subsection{Testing}
 Il testing è un processo fondamentale nello sviluppo del software che mira a verificare se un'applicazione
 funziona correttamente e soddisfa i requisiti specificati. Serve a individuare e correggere eventuali
 errori o difetti nel codice, garantendo che il software sia affidabile, stabile e conforme alle aspettative degli utenti.
@@ -15,7 +15,7 @@ degli utenti e riducendo i costi legati a eventuali correzioni post-lancio. Le p
 d'altra parte, influenzano direttamente l'esperienza utente e la soddisfazione del cliente.
 Un'applicazione lenta o instabile può respingere gli utenti.
 
-\subsection{Scalatest}
+\subsubsection{Scalatest}
 ScalaTest è un framework di testing per il linguaggio di programmazione Scala.
 È stato progettato per consentire una varietà di stili di testing, tra cui il testing unitario,
 il testing di integrazione e il testing di accettazione.\\
@@ -26,7 +26,7 @@ sviluppatori di scrivere test che verificano il comportamento delle singole unit
 come classi e metodi, in isolamento. In questo modo, è stato possibile identificare e risolvere
 eventuali bug o problemi nelle componenti del software in una fase precoce dello sviluppo.
 
-\subsection{User App}
+\subsubsection{User App}
 Testare un'applicazione web, specialmente con un framework come Svelte, può essere
 impegnativo per diverse ragioni. Queste includono la complessità dei componenti,
 l'uso di flussi di dati reattivi, la manipolazione del DOM, l'integrazione con servizi
@@ -35,7 +35,7 @@ Inoltre, gli aggiornamenti del framework richiedono test aggiuntivi per garantir
 In breve, il testing è cruciale per assicurare l'affidabilità di un'applicazione web, ma può essere
 complesso a causa delle sfide uniche presentate dall'ambiente web e dall'architettura reattiva di Svelte.
 
-\subsection{Postman}
+\subsubsection{Postman}
 Postman è stato utilizzato per effettuare vari test di integrazione, simulando le richieste
 HTTP inviate dal client alle web API. Questo strumento ha permesso di verificare il corretto
 funzionamento dei servizi REST e di identificare eventuali errori o problemi di comunicazione
@@ -68,11 +68,11 @@ In seguito qualche esempio di richieste testate con Postman.
     \label{fig:reserveNotOk}
 \end{figure}
 
-\subsection{Charging Station Domain}
+\subsubsection{Charging Station Domain}
 In seguito saranno discusse le modalità di testing delle componenti afferenti al Charging Station Domain.\\
 
 \subsubsection{Unit Testing}
-In ingegneria del software, per unit testing, test unitario[1] o collaudo unitario, si intende l'attività di collaudo di singole unità di un software. Per unità si intende normalmente il minimo componente di un programma dotato di funzionamento autonomo.\\
+In ingegneria del software, per unit testing si intende l'attività di collaudo di singole unità di un software. Per unità si intende normalmente il minimo componente di un programma dotato di funzionamento autonomo.\\
 Nel caso di questo progetto, l'unità fondamentale da testare è la Charging Station, in quanto è l'unica che presenta un comportamento indipendente ed isolato dal resto delle componenti del sistema.\\
 Per testare la Charging Station è stato utilizzato il framework ScalaTest, che permette di effettuare test di unità in modo semplice ed efficace, unito alle classi di test definite da Akka come \textbf{ActorTestKit}: esso fornisce
 un actor system tipizzato che viene avviato al momento della creazione dei test e segue il ciclo di vita dell'intero test suite.\\
@@ -121,6 +121,41 @@ class ChargingStationTest extends TestService:
 Siccome gli altri componenti del Charging Station Domain sono strettamente accoppiati tra loro, il gruppo ha ritenuta più opportuna come metodologia di test per questi componenti l'integration testing.\\
 Per realizzarlo è stata creata una main class che si occupa del setup e messa in funzione del cluster tramite file di configurazione. A questo punto, gli attori che compongono il cluster sono liberi di interagire e realizzare il comportamento da testare.\\
 Per "scatenare" i comportamenti che si vogliono testare, è stato utilizzato il tool Postman, che permette di effettuare richieste HTTP verso i servizi REST esposti dal sistema.\\
+
+\subsection{Analisi delle Performance}
+È stata effettuata un'analisi delle performance del Charging Station Service, in quanto costituisce un entry point del sistema che scatena una serie di comportamenti da parte degli altri componenti.\\
+In particolare, sono stati misurati i tempi di risposta del Service a fronte di diverse richieste HTTP tramite il tool Postman.\\
+Il cluster è stato eseguito localmente nella macchina di uno dei componenti del gruppo, con le seguenti specifiche hardware:\\
+
+\begin{tabular}{l|rr}
+  \hline
+    OS            & Windows 10 Pro          \\
+    OS Version    & 22H2                    \\
+    CPU           & AMD Ryzen 5 3600        \\
+    Cores         & 6                       \\
+    Threads       & 12                      \\
+    Base Clock    & 3.60 GHz                \\
+    L1 Cache      & 384 KB                  \\
+    L2 Cache      & 3 MB                    \\
+    L3 Cache      & 32 MB                   \\
+    Memory        & 16 GB                   \\
+  \hline
+\end{tabular}
+
+\vspace{1cm}
+Con i seguenti tempi di risposta:\\
+
+\begin{tabular}{l|rr}
+  Richiesta & Tempo medio di risposta                \\
+  \hline
+    Get all Charging Stations            & 3ms       \\
+    Get specific Charging Station        & 3ms       \\
+    Reserve station                      & 6ms       \\
+    Charge                               & 6.3ms     \\
+  \hline
+\end{tabular}
+
+Il test è stato effettuato eseguendo un cluster con 10 Actor Systems rappresentanti il Charging Station Actor e 1 Actor System rappresentante il Charging Station Provider e Service.\\
 
 %Esporre lo stato di funzionamento effettivo del sistema progettato ad elaborato concluso. Per ciascuna delle funzionalità salienti devono essere tabellate e discusse le performance riscontrate mediante opportuni test eseguiti in fase di validazione del progetto.\\
 

@@ -1,3 +1,10 @@
+## [1.5.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.4.0...1.5.0) (2023-09-03)
+
+
+### Features
+
+* add implementation details for actors ([2f3abc3](https://github.com/angelacorte/smart-charging-station-report/commit/2f3abc30d4610cbbd9263c00c2772810c67cf516))
+
 ## [1.4.0](https://github.com/angelacorte/smart-charging-station-report/compare/1.3.2...1.4.0) (2023-09-02)
 
 

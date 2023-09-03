@@ -7,21 +7,11 @@
 
 L'applicativo è stato progettato tenendo in considerazione la possibilità di essere eseguito su larga scala.\\
 
-Per quanto riguarda il lato client e il server per l'autenticazione sarebbe possibile eseguire il deployment tramite il servizio Vercel.
+\subsection{Client App}
+Per quanto riguarda il lato client e il server per l'autenticazione sarebbe possibile eseguire il deployment su cloud tramite servizi come Vercel.
 Grazie alle funzionalità messe a disposizione dal servizio, è possibile mantenere un deploy continuo dell'applicativo,
 in modo da poter aggiornare il codice in produzione in maniera semplice e veloce, tramite semplici push sul main branch di GitHub,
 grazie all'integrazione del bot offerto da Vercel.\\
-
-\subsection{CI/CD}
-
-L'integrazione delle pipeline su Github è una mossa strategica che ci permette di
-rilasciare in modo continuo nuove versioni della nostra applicazione online, evitando
-il fastidio delle operazioni manuali come la configurazione dei server e il deployment
-dell'applicazione. Questo approccio semplifica il ciclo di sviluppo, ottimizzando
-il flusso di rilascio e garantendo aggiornamenti rapidi e senza interruzioni. \\
-
-In pratica, ci consente di concentrarci sul miglioramento dell'applicazione anziché
-sulle complesse operazioni di distribuzione.
 
 \subsection{Database}
 Il deployment del database su un cluster di MongoDB Atlas ha svolto un ruolo cruciale nel progetto.
@@ -30,7 +20,20 @@ di concentrarsi maggiormente sullo sviluppo dell'applicazione stessa. La scalabi
 Atlas ha garantito prestazioni elevate e adattabilità alle crescenti esigenze dell'applicazione.\\
 
 Inoltre, sono stati sfruttati strumenti avanzati per la sicurezza dei dati e il monitoraggio delle attività.
-Complessivamente, questa scelta ha contribuito al successo del progetto, garantendo affidabilità e sicurezza.
+Complessivamente, questa scelta ha contribuito al successo del progetto, garantendo affidabilità e sicurezza.\\
+
+\subsection{Cluster}
+Per quanto riguarda invece il lato "cluster" del sistema, il gruppo ha immaginato di effettuare il deployment dei ChargingStationActor direttamente nelle stazioni di ricarica, mentre i
+componenti Charging Station Provider e Service possono essere deployati su nodi fisicamente separati dalle stazioni di ricarica. Akka cluster permette al sistema di aggiungere facilmente
+nuovi attori di qualunque tipo per soddisfare le esigenze di scalabilità del sistema.\\
+
+Il deployment finale così come immaginato dal gruppo è rappresentato dal seguente diagramma:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/deployment.png}
+    \caption{Diagramma di deployment}
+\end{figure}
 
 % In questa sezione va discussa, eventualmente con l'ausilio di opportuni diagrammi (componenti, deployment), l'evoluzione del progetto presentato immaginando che venga adottato su larga scala. I dettagli qui esposti devono quindi astrarre dalle specifiche dell'elaborato qualora l'implementazione sia stata focalizzata su uno scenario isolato.\\
 

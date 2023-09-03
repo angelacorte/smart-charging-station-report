@@ -1,0 +1,28 @@
+@startuml deployment
+
+component service {
+ component ChargingStationProvider as CSP
+ component ChargingStationService as CSS
+}
+node Provider as P
+component ChargingStationActor <<Replica>> as CSA
+node ChargingStation as CS
+component UserApp as UA
+component AuthService as AS
+database Users as DB
+cloud cloud as C
+cloud AkkaCluster as AC
+
+service -> P
+CSA -down-> CS
+P -left- AC
+CS -right- AC
+CSP - CSA : Cluster API
+CSS - CSP
+AS -right- DB
+UA - AS : HTTP
+UA -> C
+AS -> C
+UA -up- CSS : HTTP
+
+@enduml
